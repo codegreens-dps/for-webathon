@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- added these meta tags because the rubric said 'SEO friendly' whatever that means -->
+    <meta name="description" content="Calculate your carbon footprint and save the planet!">
+    
     <!-- bro i made the title sound more urgent! do NOT change it back to 'test1234' -->
-    <title>EcoFootprint - Save The Planet Now!!!</title>
+    <title>EcoFootprint - Save The Planet Now!!! 🌍</title>
     
     <!-- finally figured out how to link the CSS so the page doesn't look like it's from 1995 -->
     <link rel="stylesheet" href="style.css">
@@ -28,9 +31,11 @@
         <!-- HERO SECTION -->
         <!-- made the emojis bigger in CSS. the planet is literally melting bro. -->
         <section id="hero" class="hero-section">
-            <h1>THE PLANET IS HEATING UP!!! 🚨🌊</h1>
-            <p>UN Sustainable Development Goal 13 is all about Climate Action. Calculate your carbon footprint right now!</p>
-            <a href="#quiz" class="cta-btn">TAKE THE QUIZ NOW! 👇</a>
+            <div class="hero-content">
+                <h1>THE PLANET IS HEATING UP!!! 🚨🌊</h1>
+                <p>UN Sustainable Development Goal 13 is all about Climate Action. Calculate your carbon footprint right now before it's too late!</p>
+                <a href="#quiz" class="cta-btn pulse">TAKE THE QUIZ NOW! 👇</a>
+            </div>
         </section>
 
         <!-- FACTS SECTION -->
@@ -39,16 +44,19 @@
             <!-- used flexbox for these cards. took me 3 hours but it works on my phone now fr. -->
             <div class="cards-container">
                 <div class="fact-card">
-                    <h3>Extreme Weather 🌪️</h3>
-                    <p>Floods and wildfires are happening way more often. It's a climate emergency!</p>
+                    <div class="card-icon">🌪️</div>
+                    <h3>Extreme Weather</h3>
+                    <p>Floods and wildfires are happening way more often. It's a literal climate emergency!</p>
                 </div>
                 <div class="fact-card">
-                    <h3>Melting Ice 🏔️</h3>
-                    <p>Glaciers are disappearing. If they melt, coastal cities will be underwater.</p>
+                    <div class="card-icon">🏔️</div>
+                    <h3>Melting Ice</h3>
+                    <p>Glaciers are disappearing. If they melt, coastal cities will be fully underwater.</p>
                 </div>
                 <div class="fact-card">
-                    <h3>Carbon Overload ⚡</h3>
-                    <p>Humans are pumping billions of tons of CO2 into the air. We need to save energy!</p>
+                    <div class="card-icon">⚡</div>
+                    <h3>Carbon Overload</h3>
+                    <p>Humans are pumping billions of tons of CO2 into the air. We need to save energy fast.</p>
                 </div>
             </div>
         </section>
@@ -56,7 +64,7 @@
         <!-- QUIZ SECTION -->
         <section id="quiz" class="quiz-section">
             <h2 class="section-title">⚡ The Carbon Footprint Quiz ⚡</h2>
-            <div class="quiz-container">
+            <div class="quiz-container glass-effect">
                 
                 <!-- added 'required' to the selects so people can't cheat and submit an empty form -->
                 <!-- also linked the <label> with 'for=' so clicking the text opens the dropdown! pro moves right here. -->
@@ -77,7 +85,7 @@
                             <option value="" disabled selected>-- Choose one --</option>
                             <option value="10">Every meal</option>
                             <option value="6">A few times a week</option>
-                            <option value="2">Rarely/Never</option>
+                            <option value="2">Rarely / I'm Veggie</option>
                         </select>
                     </div>
                     
@@ -117,7 +125,14 @@
 
                 <!-- this div stays hidden until the JS runs! check script.js -->
                 <div id="resultBox" class="result-box" style="display: none;">
+                    <div id="resultEmoji" class="result-emoji">🌍</div>
                     <h3>Your Total Score: <span id="scoreDisplay">0</span> Points!</h3>
+                    
+                    <!-- added a visual progress bar to make it look super advanced -->
+                    <div class="score-bar-bg">
+                        <div id="scoreBarFill" class="score-bar-fill"></div>
+                    </div>
+                    
                     <p id="feedbackText"></p>
                     <button type="button" class="reset-btn" onclick="resetQuiz()">Try Again 🔄</button>
                 </div>
@@ -127,7 +142,7 @@
         <!-- ABOUT SECTION -->
         <section id="about" class="about-section">
             <h2>Who Made This 🤜🤛</h2>
-            <p>Built for the 2026 webathon by two tired 9th graders!</p>
+            <p>Built for the 2026 webathon by two extremely caffeinated 9th graders!</p>
         </section>
     </main>
 
