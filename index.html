@@ -1,39 +1,160 @@
-function calculateScore() {
-    // Get all the inputs
-    const q1 = document.getElementById('q1').value;
-    const q2 = document.getElementById('q2').value;
-    const q3 = document.getElementById('q3').value;
-    const q4 = document.getElementById('q4').value;
-    const q5 = document.getElementById('q5').value;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFootprint - Save The Planet Now!!!</title>
+    <style>
+        /* Basic Styles to make it look awesome */
+        body { font-family: sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; }
+        .navbar { background: #2e7d32; color: white; padding: 1rem; display: flex; justify-content: space-between; }
+        .navbar nav a { color: white; margin-left: 15px; text-decoration: none; font-weight: bold; }
+        .hero-section { text-align: center; padding: 50px 20px; background: #f1f8e9; }
+        .cards-container { display: flex; justify-content: center; gap: 20px; padding: 20px; flex-wrap: wrap; }
+        .fact-card { border: 2px solid #2e7d32; padding: 20px; width: 250px; border-radius: 10px; }
+        .quiz-section { max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+        .question-group { margin-bottom: 20px; }
+        select { width: 100%; padding: 8px; margin-top: 5px; }
+        .submit-btn, .reset-btn { background: #2e7d32; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; width: 100%; font-size: 1rem; }
+        .result-box { padding: 20px; background: #e8f5e9; border-radius: 10px; text-align: center; }
+        footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 40px; }
+    </style>
+</head>
+<body>
 
-    // Check if everything is answered
-    if (!q1 || !q2 || !q3 || !q4 || !q5) {
-        alert("Hey! Answer all the questions first, please! 🌍");
-        return;
-    }
+    <header class="navbar">
+        <div class="logo">🌿 EcoFootprint</div>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#facts">Why It Matters</a>
+            <a href="#quiz">The Quiz</a>
+            <a href="#about">Team CodeGreens</a>
+        </nav>
+    </header>
 
-    // Math!
-    const totalScore = parseInt(q1) + parseInt(q2) + parseInt(q3) + parseInt(q4) + parseInt(q5);
-    
-    // Show results
-    document.getElementById('scoreDisplay').innerText = totalScore;
-    const feedback = document.getElementById('feedbackText');
-    
-    if (totalScore <= 15) {
-        feedback.innerText = "Wow! You are an absolute Planet Hero! 🌿 Keep living that green lifestyle!";
-    } else if (totalScore <= 35) {
-        feedback.innerText = "You're doing okay, but you could definitely be greener. Small changes make a big difference!";
-    } else {
-        feedback.innerText = "Oh no! Your footprint is pretty heavy. Check out the facts above and start making changes today! 🚨";
-    }
+    <section id="hero" class="hero-section">
+        <h1>THE PLANET IS HEATING UP!!! 🚨🌊</h1>
+        <p>UN Sustainable Development Goal 13 is all about Climate Action. We can't just sit here playing video games while the ice caps melt! Calculate your carbon footprint right now!</p>
+        <a href="#quiz" style="background:#2e7d32; color:white; padding:10px 20px; text-decoration:none; border-radius:5px;">TAKE THE QUIZ NOW! 👇</a>
+    </section>
 
-    // Hide form, show result
-    document.getElementById('footprintForm').style.display = 'none';
-    document.getElementById('resultBox').style.display = 'block';
-}
+    <section id="facts" class="facts-section">
+        <h2 style="text-align:center;">Why SDG 13 Matters So Much! 📉</h2>
+        <div class="cards-container">
+            <div class="fact-card">
+                <h3>Extreme Weather 🌪️</h3>
+                <p>Floods and wildfires are happening way more often. It's a climate emergency!</p>
+            </div>
+            <div class="fact-card">
+                <h3>Melting Ice 🏔️</h3>
+                <p>Glaciers are disappearing. If they melt, coastal cities will be underwater.</p>
+            </div>
+            <div class="fact-card">
+                <h3>Carbon Overload ⚡</h3>
+                <p>Humans are pumping billions of tons of CO2 into the air. We need to save energy!</p>
+            </div>
+        </div>
+    </section>
 
-function resetQuiz() {
-    document.getElementById('footprintForm').reset();
-    document.getElementById('footprintForm').style.display = 'block';
-    document.getElementById('resultBox').style.display = 'none';
-}
+    <section id="quiz" class="quiz-section">
+        <h2 class="section-title">⚡ The Carbon Footprint Quiz ⚡</h2>
+        <form id="footprintForm">
+            <div class="question-group">
+                <label>1. How do you usually get to school? 🚌</label>
+                <select id="q1">
+                    <option value="">-- Choose one --</option>
+                    <option value="10">Driven alone in a big car</option>
+                    <option value="5">School bus</option>
+                    <option value="2">Walk or bike</option>
+                </select>
+            </div>
+            <div class="question-group">
+                <label>2. How often do you eat meat? 🍔</label>
+                <select id="q2">
+                    <option value="">-- Choose one --</option>
+                    <option value="10">Every meal</option>
+                    <option value="6">A few times a week</option>
+                    <option value="2">Rarely/Never</option>
+                </select>
+            </div>
+            <div class="question-group">
+                <label>3. Turn off lights/fans? 💡</label>
+                <select id="q3">
+                    <option value="">-- Choose one --</option>
+                    <option value="10">Never</option>
+                    <option value="5">Sometimes</option>
+                    <option value="1">Always</option>
+                </select>
+            </div>
+            <div class="question-group">
+                <label>4. How long are your showers? 🚿</label>
+                <select id="q4">
+                    <option value="">-- Choose one --</option>
+                    <option value="10">Over 15 mins</option>
+                    <option value="5">5-10 mins</option>
+                    <option value="2">Under 5 mins</option>
+                </select>
+            </div>
+            <div class="question-group">
+                <label>5. Recycle? ♻️</label>
+                <select id="q5">
+                    <option value="">-- Choose one --</option>
+                    <option value="10">Nothing</option>
+                    <option value="5">Sometimes</option>
+                    <option value="1">Strictly</option>
+                </select>
+            </div>
+            <button type="button" class="submit-btn" onclick="calculateScore()">Calculate My Score!!!</button>
+        </form>
+
+        <div id="resultBox" class="result-box" style="display: none;">
+            <h3>Your Total Score: <span id="scoreDisplay">0</span> Points!</h3>
+            <p id="feedbackText"></p>
+            <button type="button" class="reset-btn" onclick="resetQuiz()">Try Again 🔄</button>
+        </div>
+    </section>
+
+    <section id="about" class="about-section" style="text-align:center;">
+        <h2>About Team CodeGreens 🤜🤛</h2>
+        <p>We are two best friends from Class 9 who built this ourselves for the SDG Webathon!</p>
+        <p><strong>Rahul S.</strong> (Structure) | <strong>Aman V.</strong> (Logic Wizard)</p>
+    </section>
+
+    <footer>
+        <p>© 2026 Team CodeGreens. Save the trees! 🌲</p>
+    </footer>
+
+    <script>
+        function calculateScore() {
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+            const q4 = document.getElementById('q4').value;
+            const q5 = document.getElementById('q5').value;
+
+            if (!q1 || !q2 || !q3 || !q4 || !q5) {
+                alert("Hey! Answer all the questions first! 🌍");
+                return;
+            }
+
+            const totalScore = parseInt(q1) + parseInt(q2) + parseInt(q3) + parseInt(q4) + parseInt(q5);
+            document.getElementById('scoreDisplay').innerText = totalScore;
+            
+            let feedback = "";
+            if (totalScore <= 15) feedback = "Wow! You are an absolute Planet Hero! 🌿";
+            else if (totalScore <= 35) feedback = "You're doing okay, but you could be greener!";
+            else feedback = "Oh no! Your footprint is heavy. Time to make changes! 🚨";
+            
+            document.getElementById('feedbackText').innerText = feedback;
+            document.getElementById('footprintForm').style.display = 'none';
+            document.getElementById('resultBox').style.display = 'block';
+        }
+
+        function resetQuiz() {
+            document.getElementById('footprintForm').reset();
+            document.getElementById('footprintForm').style.display = 'block';
+            document.getElementById('resultBox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
