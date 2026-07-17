@@ -1,16 +1,16 @@
-// importing firebase stuff from the web
+// importing firebase stuff from the web - dont ask me how this works lol
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, updateDoc, doc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-// DO NOT TOUCH THIS CONFIG - setting up my database
-const firebaseConfig = {
-    apiKey: "AIzaSyBNO8SiOBW49CqL7YgHd572pF9mikE7ABo",
-    authDomain: "ecofootprint-9c4ed.firebaseapp.com",
-    projectId: "ecofootprint-9c4ed",
-    storageBucket: "ecofootprint-9c4ed.firebasestorage.app",
-    messagingSenderId: "425267033599",
-    appId: "1:425267033599:web:3554770c24a204594ba3ca",
-    measurementId: "G-NCNFZTHKS4"
+// DO NOT TOUCH THIS CONFIG - took me forever to copy paste this right
+var firebaseConfig = {
+  apiKey: "AIzaSyBNO8SiOBW49CqL7YgHd572pF9mikE7ABo",
+  authDomain: "ecofootprint-9c4ed.firebaseapp.com",
+  projectId: "ecofootprint-9c4ed",
+  storageBucket: "ecofootprint-9c4ed.firebasestorage.app",
+  messagingSenderId: "425267033599",
+  appId: "1:425267033599:web:3554770c24a204594ba3ca",
+  measurementId: "G-NCNFZTHKS4"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -19,72 +19,76 @@ const db = getFirestore(app);
 // -----------------------------
 // QUIZ SECTION LOGIC
 // -----------------------------
-document.getElementById('footprintForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // don't reload the page on submit pls
+document.getElementById('footprintForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // stop page reload!!!
+
+    // console.log("button clicked");
 
     // get all the answers from the dropdowns
-    let a1 = parseInt(document.getElementById("q1").value) || 0;
-    let a2 = parseInt(document.getElementById("q2").value) || 0;
-    let a3 = parseInt(document.getElementById("q3").value) || 0;
-    let a4 = parseInt(document.getElementById("q4").value) || 0;
-    let a5 = parseInt(document.getElementById("q5").value) || 0;
+    var ans1 = parseInt(document.getElementById("q1").value) || 0;
+    let ans2 = parseInt(document.getElementById("q2").value) || 0;
+    var q3_val = Number(document.getElementById("q3").value) || 0;
+    let fourth = parseInt(document.getElementById("q4").value) || 0;
+    var a5 = parseInt(document.getElementById("q5").value) || 0;
     
-    let finalScore = a1 + a2 + a3 + a4 + a5;
+    let totalScore = ans1 + ans2 + q3_val + fourth + a5;
+    // console.log(totalScore);
 
     // save score to the cloud secretly
     try {
-        await addDoc(collection(db, 'simulatorScores'), {
-            score: finalScore,
-            date: new Date().toString()
-        });
-    } catch (e) {
-        console.log("bruh firebase error: ", e);
+      await addDoc(collection(db, 'simulatorScores'), {
+         score: totalScore,
+         date: new Date().toString()
+      });
+    } catch (err) {
+      console.log("bruh firebase error wtf: ", err);
     }
 
-    let feedbackMsg = document.getElementById("feedbackText");
-    let faceEmoji = "";
-    let colorHex = "";
+    let fMsg = document.getElementById("feedbackText");
+    var face = "";
+    var cHex = "";
 
     // update the ui colors and text based on how well they did
-    if (finalScore >= 80) {
-        faceEmoji = "🌍🏆";
-        colorHex = "green"; 
-        feedbackMsg.innerText = "🔥 INCREDIBLE! You implemented a true sustainable framework. By shifting to renewables and enforcing a circular economy, we can reach Net-Zero!";
-        feedbackMsg.style.color = "green"; 
-    } else if (finalScore >= 40 && finalScore < 80) {
-        faceEmoji = "⚠️📉";
-        colorHex = "orange"; 
-        feedbackMsg.innerText = "🌱 A GOOD START. But half-measures like EVs aren't enough. We need systemic shifts in agriculture and public transit. Try again!";
-        feedbackMsg.style.color = "orange"; 
+    if (totalScore >= 80) {
+        face = "🌍🏆";
+        cHex = "green"; 
+        fMsg.innerText = "🔥 INCREDIBLE! You implemented a true sustainable framework. By shifting to renewables and enforcing a circular economy, we can reach Net-Zero!";
+        fMsg.style.color = "green"; 
+    } 
+    else if (totalScore >= 40 && totalScore < 80) {
+      face = "⚠️📉";
+      cHex = "orange"; 
+      fMsg.innerText = "🌱 A GOOD START. But half-measures like EVs aren't enough. We need systemic shifts in agriculture and public transit. Try again!";
+      fMsg.style.color = "orange"; 
     } else {
-        faceEmoji = "🏭❌";
-        colorHex = "red"; 
-        feedbackMsg.innerText = "🚨 DISASTER. Continuing the status quo guarantees severe global warming. We need radical policy shifts immediately.";
-        feedbackMsg.style.color = "red"; 
+            face = "🏭❌";
+            cHex = "red"; 
+            fMsg.innerText = "🚨 DISASTER. Continuing the status quo guarantees severe global warming. We need radical policy shifts immediately.";
+            fMsg.style.color = "red"; 
     }
 
-    document.getElementById("resultEmoji").innerText = faceEmoji;
-    document.getElementById('footprintForm').style.display = 'none'; // hide quiz
+    document.getElementById("resultEmoji").innerText = face;
+    document.getElementById('footprintForm').style.display = 'none'; // hide form
     document.getElementById("resultBox").style.display = "block"; // show results
 
-    // cool little counting animation I found online
-    let counter = 0;
+    // cool little counting animation I found online on codepen
+    var c = 0;
     document.getElementById("scoreText").innerText = "0"; 
     
-    let timerThing = setInterval(() => {
-        if (counter >= finalScore) {
-            clearInterval(timerThing);
-            document.getElementById("scoreText").innerText = finalScore; 
+    let ticker = setInterval(function() {
+        if (c >= totalScore) {
+            clearInterval(ticker);
+            document.getElementById("scoreText").innerText = totalScore; 
         } else {
-            counter++;
-            document.getElementById("scoreText").innerText = counter;
+            c++;
+            document.getElementById("scoreText").innerText = c;
         }
     }, 20); 
 
     // animate the bar filling up
     setTimeout(() => {
-        document.getElementById("barFill").style.width = finalScore + "%";
-        document.getElementById("barFill").style.backgroundColor = colorHex;
+       document.getElementById("barFill").style.width = totalScore + "%";
+       document.getElementById("barFill").style.backgroundColor = cHex;
     }, 150);
 });
 
@@ -92,53 +96,52 @@ document.getElementById('footprintForm').addEventListener('submit', async functi
 // -----------------------------
 // LIVE BOARD LOGIC
 // -----------------------------
-const boardDB = collection(db, "listedItems");
-const myQuery = query(boardDB, orderBy("timestamp", "desc"));
+const board = collection(db, "listedItems");
+const myQ = query(board, orderBy("timestamp", "desc"));
 
 // this updates the board instantly when someone posts without needing to refresh
-onSnapshot(myQuery, (snap) => {
-    let boardDiv = document.getElementById('live-board');
-    boardDiv.innerHTML = ""; // clear old data first
+onSnapshot(myQ, (snapshotThing) => {
+    let b = document.getElementById('live-board');
+    b.innerHTML = ""; // empty first
     
-    let itemsCount = 0; 
+    var count_items = 0; 
 
-    snap.forEach((docData) => {
-        let item = docData.data();
-        let itemId = docData.id; 
+    snapshotThing.forEach((d) => {
+        let itemData = d.data();
+        let idString = d.id; 
 
         // if someone already took it, just skip rendering it
-        if (item.status === "claimed") {
+        if (itemData.status == "claimed") {
             return; 
         }
 
-        itemsCount++; 
+        count_items++; 
 
-        // build the html for the item card
-        let cardHTML = `
-            <div class="item-card" id="card-${itemId}">
-                <div class="card-icon">${item.icon}</div>
-                <h3>${item.name}</h3>
-                <p class="lister-name">Listed by: ${item.lister}</p>
-                <p>${item.description}</p>
-                <button class="grab-btn" id="btn-${itemId}" onclick="claimIt('${itemId}')">CLAIM FOR FREE</button>
-            </div>
-        `;
-        boardDiv.innerHTML += cardHTML;
+        // build the html for the item card (using string concat cos its easier to read sometimes)
+        let htmlCard = '<div class="item-card" id="card-' + idString + '">' +
+            '<div class="card-icon">' + itemData.icon + '</div>' +
+            '<h3>' + itemData.name + '</h3>' +
+            '<p class="lister-name">Listed by: ' + itemData.lister + '</p>' +
+            '<p>' + itemData.description + '</p>' +
+            '<button class="grab-btn" id="btn-' + idString + '" onclick="claimIt(\'' + idString + '\')">CLAIM FOR FREE</button>' +
+        '</div>';
+        
+        b.innerHTML += htmlCard;
     });
     
-    if (itemsCount == 0) {
-        boardDiv.innerHTML = "<h3 style='width:100%; text-align:center; color:gray;'>No items available right now. Be the first to list something! ♻️</h3>";
+    if (count_items === 0) {
+        b.innerHTML = "<h3 style='width:100%;text-align:center;color:gray;'>No items available right now. Be the first to list something! ♻️</h3>";
     }
 });
 
 
-// when someone submits the new item form
-document.getElementById('addItemForm').addEventListener('submit', async function(ev) {
+// submit form for new item
+document.getElementById('addItemForm').addEventListener('submit', async (ev) => {
     ev.preventDefault(); 
 
-    let submitBtn = document.querySelector(".post-btn") || document.querySelector("button[type='submit']");
-    let originalText = submitBtn.innerText;
-    submitBtn.innerText = "UPLOADING... ⏳";
+    let btn_submit = document.querySelector(".post-btn") || document.querySelector("button[type='submit']");
+    var old_txt = btn_submit.innerText;
+    btn_submit.innerText = "UPLOADING... ⏳";
     
     try {
         await addDoc(collection(db, "listedItems"), {
@@ -153,68 +156,68 @@ document.getElementById('addItemForm').addEventListener('submit', async function
         alert("📦 It's live on the board!");
         document.getElementById('addItemForm').reset();
 
-    } catch (err) {
-        console.log("error saving item: ", err);
-        alert("Oops, network error.");
+    } catch (error) {
+        console.log(error);
+        alert("network error bro");
     } 
     
-    submitBtn.innerText = originalText;
+    btn_submit.innerText = old_txt;
 });
 
 
-// putting this on window so the inline html onclick can actually see it lol
-window.claimIt = async function(id) {
-    let username = prompt("♻️ Awesome! Enter your name & class so the owner knows who to give it to:");
+// putting this on window so the inline html onclick can actually see it
+window.claimIt = async function(itemID) {
+    let u_name = prompt("♻️ Awesome! Enter your name & class so the owner knows who to give it to:");
 
     // if they cancel the prompt just stop
-    if (!username || username.trim() == "") {
+    if (!u_name || u_name.trim() == "") {
         return; 
     }
 
-    let theCard = document.getElementById("card-" + id);
-    let theBtn = document.getElementById("btn-" + id);
+    var the_card = document.getElementById("card-" + itemID);
+    var the_btn = document.getElementById("btn-" + itemID);
 
     // fake the ui update first so it feels super fast to the user
-    if(theBtn) {
-        theBtn.innerText = "🎉 CLAIMED BY " + username.toUpperCase() + "!";
-        theBtn.style.background = "green"; 
-        theBtn.style.color = "white";
-        theBtn.disabled = true;
+    if(the_btn) {
+        the_btn.innerText = "🎉 CLAIMED BY " + u_name.toUpperCase() + "!";
+        the_btn.style.background = "green"; 
+        the_btn.style.color = "white";
+        the_btn.disabled = true;
     }
 
-    if(theCard) {
-        theCard.style.borderColor = "green";
+    if(the_card) {
+        the_card.style.borderColor = "green";
     }
 
     // wait a second then actually update database
-    setTimeout(async () => {
+    setTimeout(async function() {
         
-        if (theCard) {
-            theCard.style.opacity = "0.3"; // fade it out a bit
+        if (the_card) {
+            the_card.style.opacity = "0.3"; // fade it out a bit
         }
 
         try {
             // update firebase
-            let docRef = doc(db, "listedItems", id);
-            await updateDoc(docRef, {
+            let r = doc(db, "listedItems", itemID);
+            await updateDoc(r, {
                 status: "claimed",
-                claimedBy: username
+                claimedBy: u_name
             });
             
-        } catch (err) {
-            console.log("firebase claim error: ", err);
+        } catch (e) {
+            console.log("err: " + e);
             alert("🚨 ERROR: Couldn't connect to server!");
             
             // if it failed, put the button back to normal
-            if(theBtn) {
-                theBtn.innerText = "CLAIM FOR FREE";
-                theBtn.style.background = "";
-                theBtn.style.color = "black";
-                theBtn.disabled = false;
+            if(the_btn) {
+                the_btn.innerText = "CLAIM FOR FREE";
+                the_btn.style.background = "";
+                the_btn.style.color = "black";
+                the_btn.disabled = false;
             }
-            if(theCard) {
-                theCard.style.borderColor = "black";
-                theCard.style.opacity = "1";
+            if(the_card) {
+                the_card.style.borderColor = "black";
+                the_card.style.opacity = "1";
             }
         }
 
@@ -222,14 +225,14 @@ window.claimIt = async function(id) {
 };
 
 
-// function for the try again button
-window.resetQuiz = function() {
+// reset button for quiz
+window.resetQuiz = () => {
     document.getElementById("footprintForm").reset();
     document.getElementById("scoreText").innerText = "0";
     document.getElementById("barFill").style.width = "0%";
     document.getElementById("resultBox").style.display = "none";
     document.getElementById("footprintForm").style.display = "block";
     
-    // scroll back up to the top of the quiz
+    // scroll back up
     window.scrollTo(0, document.getElementById('sim').offsetTop);
-};
+}
