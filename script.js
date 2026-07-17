@@ -1,7 +1,7 @@
 // ==========================================
 // SDG WEBATHON - JAVASCRIPT LOGIC
 // Update: Swapped to 100% grounded, real-world UN SDG 13 policies. 
-// No more sci-fi. We are dropping pure facts on the judges.
+// Update 2: Added JS logic for the Give & Take Board!
 // ==========================================
 
 console.log("%c🌿 TEAM CODEGREENS FOR THE WIN! 🌿", "color: #2ecc71; font-size: 20px; font-weight: bold;");
@@ -74,7 +74,7 @@ document.getElementById('footprintForm').addEventListener('submit', function(eve
         }
     }, 20); 
 
-    // Animate the progress bar (Score is out of 100, so width is just totalScore%)
+    // Animate the progress bar
     setTimeout(() => {
         scoreBarFill.style.width = totalScore + "%";
         scoreBarFill.style.backgroundColor = barColor;
@@ -90,4 +90,24 @@ function resetQuiz() {
     document.getElementById("footprintForm").style.display = "block";
     
     document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ==========================================
+// THE GIVE & TAKE BOARD LOGIC
+// bro this makes the buttons actually work
+// ==========================================
+function claimItem(itemId) {
+    // get the specific button they clicked
+    let btn = document.getElementById("btn-" + itemId);
+    
+    // pop an alert to make it feel real
+    alert("♻️ Circular Economy WIN! You just claimed this item. Go meet the senior in the cafeteria to pick it up!");
+
+    // change the button text and disable it so nobody else can click it
+    btn.innerHTML = "CLAIMED ❌";
+    btn.disabled = true;
+    
+    // change the card's border to grey to show it's gone
+    document.getElementById("card-" + itemId).style.borderColor = "#9e9e9e";
+    document.getElementById("card-" + itemId).style.boxShadow = "none";
 }
