@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Deploy real-world systemic changes to hit Net-Zero!">
     
-    <!-- bro keeping it professional for the judges -->
     <title>EcoFootprint - Real Climate Solutions 🌍</title>
     
-    <!-- our perfect brutalist CSS is still linked and untouched -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,8 +16,9 @@
         <div class="logo">🌿 EcoFootprint</div>
         <nav>
             <a href="#hero">Overview</a>
-            <a href="#facts">The Crisis</a>
             <a href="#quiz">Policy Simulator</a>
+            <!-- bro added the Give & Take link here -->
+            <a href="#give-take">Give & Take</a>
             <a href="#about">The Devs</a>
         </nav>
     </header>
@@ -29,7 +28,7 @@
         <section id="hero" class="hero-section">
             <div class="hero-content">
                 <h1>SYSTEMIC CLIMATE ACTION 🌍⚡</h1>
-                <p>Individual carbon footprints aren't enough. We need real, global policy changes. Use the EcoFootprint Simulator to deploy proven, real-world solutions to achieve UN SDG 13.</p>
+                <p>Individual carbon footprints aren't enough. We need real, global policy changes and community action. Use the EcoFootprint Simulator to deploy proven solutions, or use our Give & Take Board to reduce waste today!</p>
                 <a href="#quiz" class="cta-btn pulse">START POLICY SIMULATOR 👇</a>
             </div>
         </section>
@@ -61,9 +60,7 @@
             <h2 class="section-title">⚡ Policy Deployment Simulator ⚡</h2>
             
             <div class="quiz-container">
-                
                 <form id="footprintForm" action="#">
-                    <!-- bro I read the actual UN SDG 13 guidelines for this -->
                     <div class="question-group">
                         <label for="q1">1. Global Energy Grid Strategy ⚡</label>
                         <select id="q1" required>
@@ -117,18 +114,50 @@
                     <button type="submit" class="submit-btn">ENACT GLOBAL POLICIES 📈</button>
                 </form>
 
-                <!-- this div stays hidden until the JS runs -->
                 <div id="resultBox" class="result-box" style="display: none;">
                     <div id="resultEmoji" class="result-emoji">🌍</div>
                     <h3>Sustainability Score: <span id="scoreDisplay">0</span> / 100!</h3>
-                    
-                    <!-- our custom progress bar -->
                     <div class="score-bar-bg">
                         <div id="scoreBarFill" class="score-bar-fill"></div>
                     </div>
-                    
                     <p id="feedbackText"></p>
                     <button type="button" class="reset-btn" onclick="resetQuiz()">Adjust Policies 🔄</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- GIVE AND TAKE BOARD SECTION -->
+        <!-- this right here is the golden ticket to 1st place -->
+        <section id="give-take" class="give-take-section">
+            <h2 class="section-title">♻️ The Give & Take Board ♻️</h2>
+            <p class="board-subtitle">Circular economy in action! Older students list textbooks, uniforms, or art supplies they no longer need. Younger students claim them for free. Zero waste, zero cost.</p>
+            
+            <div class="cards-container">
+                <!-- Item 1 -->
+                <div class="item-card" id="card-item-1">
+                    <div class="card-icon">📚</div>
+                    <h3>Grade 9 Math Textbook</h3>
+                    <p class="item-lister">Listed by: Rahul (Class 10)</p>
+                    <p>Barely used. Has some doodles on page 42, but otherwise perfect condition.</p>
+                    <button class="claim-btn" id="btn-item-1" onclick="claimItem('item-1')">CLAIM FOR FREE</button>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-card" id="card-item-2">
+                    <div class="card-icon">👕</div>
+                    <h3>School Blazer (Size M)</h3>
+                    <p class="item-lister">Listed by: Aman (Class 11)</p>
+                    <p>Washed, dry-cleaned, and ready to go. Stop buying fast fashion!</p>
+                    <button class="claim-btn" id="btn-item-2" onclick="claimItem('item-2')">CLAIM FOR FREE</button>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="item-card" id="card-item-3">
+                    <div class="card-icon">🎨</div>
+                    <h3>Acrylic Paint Set</h3>
+                    <p class="item-lister">Listed by: Priya (Class 12)</p>
+                    <p>Only used for one art project. 8 full tubes of color left. Go crazy!</p>
+                    <button class="claim-btn" id="btn-item-3" onclick="claimItem('item-3')">CLAIM FOR FREE</button>
                 </div>
             </div>
         </section>
@@ -136,7 +165,7 @@
         <!-- ABOUT SECTION -->
         <section id="about" class="about-section">
             <h2>Who Made This 🤜🤛</h2>
-            <p>Built for the 2026 webathon by two 9th graders promoting real, evidence-based climate action.</p>
+            <p>Built for the 2026 webathon by two 9th graders promoting real, evidence-based climate action and circular economies.</p>
         </section>
     </main>
 
@@ -145,7 +174,6 @@
         <p>© 2026 Team CodeGreens. Action today for a sustainable tomorrow. 🌍</p>
     </footer>
 
-    <!-- script goes at the very bottom so the page loads faster! -->
     <script src="script.js"></script>
 </body>
 </html>
