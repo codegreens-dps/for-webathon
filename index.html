@@ -4,12 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EcoFootprint - Real Climate Solutions 🌍</title>
-  
-  <!-- our css file -->
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
-
   <!-- nav bar -->
   <header class="top-nav">
     <h2 class="site-logo">🌿 EcoFootprint</h2>
@@ -20,31 +17,26 @@
       <a href="#about">The Devs</a>
     </nav>
   </header>
-
   <!-- main banner thing -->
   <div id="home" class="banner">
     <h1>SYSTEMIC CLIMATE ACTION 🌍⚡</h1>
     <p>Individual carbon footprints aren't enough. We need real, global policy changes and community action. Use our simulator to deploy proven solutions, or use the Give & Take Board to reduce waste today!</p>
     <a href="#sim"><button class="big-btn">START POLICY SIMULATOR 👇</button></a>
   </div>
-
   <!-- threats boxes -->
   <div class="threats-wrapper">
     <h2 class="main-heading">The Real Threat Levels 🚨</h2>
-    
     <div class="flex-boxes">
       <div class="info-box">
         <h1 class="box-emoji">🏭</h1>
         <h3>Fossil Fuel Reliance</h3>
         <p>Coal and gas still dominate the global grid. We must transition to renewable energy immediately.</p>
       </div>
-      
       <div class="info-box">
         <h1 class="box-emoji">🌲</h1>
         <h3>Deforestation</h3>
         <p>We are losing natural carbon sinks. Protecting forests and wetlands is essential for survival.</p>
       </div>
-      
       <div class="info-box">
         <h1 class="box-emoji">🗑️</h1>
         <h3>Linear Economy</h3>
@@ -52,14 +44,11 @@
       </div>
     </div>
   </div>
-
   <!-- the quiz / simulator -->
   <div id="sim" class="sim-area">
     <h2 class="main-heading">⚡ Policy Deployment Simulator ⚡</h2>
-    
     <div class="quiz-box">
       <form id="footprintForm">
-        
         <div class="q-wrap">
           <label>1. Global Energy Grid Strategy ⚡</label>
           <select id="q1" required>
@@ -69,7 +58,6 @@
             <option value="0">Continue subsidizing coal and fossil fuels</option>
           </select>
         </div>
-        
         <div class="q-wrap">
           <label>2. Natural Carbon Sinks & Land Use 🌲</label>
           <select id="q2" required>
@@ -79,7 +67,6 @@
             <option value="0">Expand agricultural land by cutting rainforests</option>
           </select>
         </div>
-        
         <div class="q-wrap">
           <label>3. Agricultural & Food System Shift 🍎</label>
           <select id="q3" required>
@@ -89,7 +76,6 @@
             <option value="0">Maintain current factory farming practices</option>
           </select>
         </div>
-        
         <div class="q-wrap">
           <label>4. Urban Transport Infrastructure 🚄</label>
           <select id="q4" required>
@@ -99,7 +85,6 @@
             <option value="0">Expand highways and keep gas-powered cars</option>
           </select>
         </div>
-        
         <div class="q-wrap">
           <label>5. Industry & Manufacturing 🏗️</label>
           <select id="q5" required>
@@ -109,34 +94,25 @@
             <option value="0">Status quo (make, use, throw away)</option>
           </select>
         </div>
-        
         <button type="submit" class="submit-button">ENACT GLOBAL POLICIES 📈</button>
       </form>
-
-      <!-- hidden result screen that shows up in js -->
+      <!-- hidden result screen -->
       <div id="resultBox" class="end-screen" style="display: none;">
         <h1 id="resultEmoji" class="big-emoji">🌍</h1>
         <h3>Sustainability Score: <span id="scoreText">0</span> / 100!</h3>
-        
-        <div id="barBacking" class="bar-background">
-          <div id="barFill" class="bar-color"></div>
-        </div>
-        
+        <div id="barBacking" class="bar-background"><div id="barFill" class="bar-color"></div></div>
         <p id="feedbackText"></p>
         <button type="button" class="btn-retry" onclick="resetQuiz()">Adjust Policies 🔄</button>
       </div>
     </div>
   </div>
-
   <!-- give and take board section -->
   <div id="board" class="board-area">
     <h2 class="main-heading">♻️ The Give & Take Board ♻️</h2>
     <p class="sub-text">Circular economy in action! List items you don't need, or claim stuff for free. Syncs live globally.</p>
-    
     <div class="new-post-box">
       <h3>List a New Item 📦</h3>
       <form id="addItemForm">
-        
         <div class="flex-inputs">
           <input type="text" id="newItemName" placeholder="What are you giving away?" required>
           <select id="newItemIcon" required>
@@ -148,32 +124,22 @@
             <option value="💻">💻 Tech/Cables</option>
           </select>
         </div>
-        
         <input type="text" id="newListerName" placeholder="Your Name & Class (e.g. Rahul, 9B)" required>
-        
         <textarea id="newItemDesc" rows="3" placeholder="Describe the condition..." required></textarea>
-        
         <button type="submit" class="post-btn">LIST ITEM SECURELY 🔒</button>
       </form>
     </div>
-    
-    <!-- this is where firebase posts load -->
-    <!-- Added 'flex-boxes' here so the JS-injected cards align side-by-side! -->
     <div id="live-board" class="flex-boxes">
       <h3 style="width:100%; text-align:center; color:gray;">📡 Syncing live items from the cloud...</h3>
     </div>
   </div>
-
-  <!-- footer / about section -->
+  <!-- footer -->
   <footer id="about" class="about-us">
     <h2>Who Made This 🤜🤛</h2>
     <p>Built for the 2026 webathon by two 9th graders promoting real climate action.</p>
     <br>
     <p>© 2026 Team CodeGreens. Action today for a sustainable tomorrow. 🌍</p>
   </footer>
-
-  <!-- javascript file here -->
   <script type="module" src="script.js"></script>
-
 </body>
 </html>
