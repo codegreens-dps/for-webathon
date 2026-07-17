@@ -157,30 +157,72 @@ document.getElementById('addItemForm').addEventListener('submit', async function
 });
 
 // UPDATING DATA: Claim an item
+// UPDATING DATA: Claim an item (REFINED UX)
 window.claimItem = async (docId) => {
+    // 1. Ask for their identity so it's a real transaction!
+    let claimerName = prompt("♻️ Awesome! Enter your name & class so the owner knows who to give it to:");
+
+    // If they hit cancel or leave it blank, stop the function
+    if (!claimerName || claimerName.trim() === "") {
+        return; 
+    }
+
+    let card = document.getElementById("card-" + docId);
     let btn = document.getElementById("btn-" + docId);
+
+    // 2. THE CELEBRATION STATE (Change UI instantly before touching the database)
     if(btn) {
-        btn.innerHTML = "WAIT... ⏳";
+        btn.innerHTML = "🎉 CLAIMED BY " + claimerName.toUpperCase() + "!";
+        btn.style.backgroundColor = "#2ecc71"; // Turn it bright green
+        btn.style.color = "#fff";
         btn.disabled = true;
     }
 
-    try {
-        // Change the status to 'claimed' in the cloud. 
-        // As soon as this succeeds, onSnapshot fires and erases the card instantly.
-        const itemRef = doc(db, "listedItems", docId);
-        await updateDoc(itemRef, {
-            status: "claimed"
-        });
-        
-    } catch (err) {
-        console.error("DB Error: ", err);
-        // BRO: IF YOU SEE THIS ALERT, YOUR FIREBASE RULES ARE WRONG!
-        alert("🚨 ERROR: Firebase blocked it! Go to Firebase > Firestore > Rules and set 'allow read, write: if true;'");
-        if(btn) {
-            btn.innerHTML = "CLAIM FOR FREE";
-            btn.disabled = false;
-        }
+    if(card) {
+        card.style.borderColor = "#2ecc71";
+        card.style.boxShadow = "8px 8px 0px #2ecc71"; // Green shadow flex
     }
+
+    // 3. Let them enjoy the victory for 1.5 seconds, THEN fade it out
+    setTimeout(async () => {
+        
+        // Smooth fade out animation
+        if (card) {
+            card.style.opacity = "0";
+            card.style.transform = "scale(0.9) translateY(20px)";
+        }
+
+        // Wait a tiny 300ms for the fade animation to finish, THEN ping Firebase
+        setTimeout(async () => {
+            try {
+                // Update the cloud! We also save WHO claimed it now.
+                const itemRef = doc(db, "listedItems", docId);
+                await updateDoc(itemRef, {
+                    status: "claimed",
+                    claimedBy: claimerName
+                });
+                
+            } catch (err) {
+                console.error("DB Error: ", err);
+                alert("🚨 ERROR: Firebase connection failed! Check console.");
+                
+                // If the database fails, revert the card back to normal
+                if(btn) {
+                    btn.innerHTML = "CLAIM FOR FREE";
+                    btn.style.backgroundColor = "#ffeb3b";
+                    btn.style.color = "#000";
+                    btn.disabled = false;
+                }
+                if(card) {
+                    card.style.borderColor = "#000";
+                    card.style.boxShadow = "8px 8px 0px #ffeb3b";
+                    card.style.opacity = "1";
+                    card.style.transform = "none";
+                }
+            }
+        }, 300);
+
+    }, 1500); // 1.5 second delay before it vanishes
 };
 
 window.resetQuiz = () => {
