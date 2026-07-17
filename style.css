@@ -1,44 +1,42 @@
-/* GLOBAL SETTINGS - NO MARGINS ALLOWED */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, "Trebuchet MS", sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6; }
+/* GLOBAL SETTINGS - ADDED SMOOTH TRANSITIONS */
+* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.2s ease; }
+body { font-family: 'Segoe UI', Arial, "Trebuchet MS", sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6; }
 
 /* NAVBAR - STICKY AND BOLD */
 .navbar { background-color: #ffffff; border-bottom: 4px solid #000000; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; }
-.logo { font-size: 24px; font-weight: bold; color: #2ecc71; text-transform: uppercase; }
-.navbar nav a { color: #000000; text-decoration: none; font-weight: bold; margin-left: 20px; padding: 5px; border: 2px solid transparent; }
-.navbar nav a:hover { color: #2ecc71; border-bottom: 2px solid #2ecc71; }
+.logo { font-size: 24px; font-weight: 800; color: #2ecc71; text-transform: uppercase; letter-spacing: 1px; }
+.navbar nav a { color: #000000; text-decoration: none; font-weight: bold; margin-left: 20px; padding: 5px; border-bottom: 3px solid transparent; }
+.navbar nav a:hover { color: #2ecc71; border-bottom: 3px solid #2ecc71; transform: translateY(-2px); }
 
-/* HERO SECTION - HIGH CONTRAST */
-.hero-section { background-color: #2ecc71; color: #ffffff; padding: 80px 20px; text-align: center; border-bottom: 5px solid #000000; }
-.hero-section h1 { font-size: 45px; margin-bottom: 20px; text-shadow: 3px 3px 0px #000000; }
-.hero-section p { font-size: 18px; max-width: 800px; margin: 0 auto 30px auto; font-weight: bold; }
-.cta-btn { display: inline-block; background-color: #ffffff; color: #000000; padding: 15px 30px; font-size: 20px; font-weight: bold; text-decoration: none; border: 3px solid #000000; box-shadow: 5px 5px 0px #000000; }
-.cta-btn:hover { background-color: #000000; color: #2ecc71; cursor: pointer; }
+/* HERO SECTION - HIGH IMPACT */
+.hero-section { background-color: #2ecc71; color: #ffffff; padding: 100px 20px; text-align: center; border-bottom: 5px solid #000000; }
+.hero-section h1 { font-size: 3rem; margin-bottom: 20px; text-shadow: 4px 4px 0px #000000; }
+.hero-section p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; font-weight: 600; }
+.cta-btn { display: inline-block; background-color: #ffffff; color: #000000; padding: 15px 30px; font-size: 1.2rem; font-weight: 800; text-decoration: none; border: 3px solid #000000; box-shadow: 6px 6px 0px #000000; }
+.cta-btn:hover { background-color: #000000; color: #ffffff; border-color: #ffffff; transform: translate(-2px, -2px); box-shadow: 8px 8px 0px #ffffff; }
 
-/* FACTS SECTION - BLOCKY CARDS */
-.facts-section { padding: 60px 20px; background-color: #f9f9f9; }
-.section-title { text-align: center; font-size: 32px; margin-bottom: 40px; text-decoration: underline; }
+/* FACTS SECTION - CLEAN GRID */
+.facts-section { padding: 80px 20px; background-color: #f9f9f9; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; text-decoration: underline; text-decoration-thickness: 4px; }
 .cards-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-.fact-card { background-color: #ffffff; border: 3px solid #000000; padding: 25px; width: 300px; box-shadow: 6px 6px 0px #2ecc71; }
-.fact-card h3 { margin-bottom: 15px; color: #2ecc71; font-size: 22px; }
+.fact-card { background-color: #ffffff; border: 3px solid #000000; padding: 30px; width: 320px; box-shadow: 8px 8px 0px #2ecc71; }
+.fact-card:hover { transform: translateY(-5px); box-shadow: 12px 12px 0px #2ecc71; }
+.fact-card h3 { margin-bottom: 15px; color: #2ecc71; font-size: 1.5rem; }
 
-/* QUIZ SECTION - THE CORE LOGIC UI */
-.quiz-section { padding: 60px 20px; border-top: 5px solid #000000; border-bottom: 5px solid #000000; }
-.quiz-subtitle { text-align: center; margin-bottom: 30px; font-style: italic; }
-.quiz-container { max-width: 650px; margin: 0 auto; background-color: #ffffff; border: 4px solid #000000; padding: 30px; box-shadow: 8px 8px 0px #000000; }
-.question-group { margin-bottom: 20px; }
-.question-group label { display: block; font-weight: bold; margin-bottom: 8px; font-size: 16px; }
-.question-group select { width: 100%; padding: 10px; font-size: 15px; border: 2px solid #000000; background-color: #ffffff; }
-.submit-btn { width: 100%; background-color: #2ecc71; color: #ffffff; font-size: 18px; font-weight: bold; padding: 12px; border: 3px solid #000000; box-shadow: 4px 4px 0px #000000; cursor: pointer; }
-.submit-btn:hover { background-color: #27ae60; }
+/* QUIZ SECTION - PROFESSIONAL INPUTS */
+.quiz-section { padding: 80px 20px; border-top: 5px solid #000000; border-bottom: 5px solid #000000; }
+.quiz-container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 4px solid #000000; padding: 40px; box-shadow: 10px 10px 0px #000000; }
+.question-group select { width: 100%; padding: 12px; margin-top: 10px; border: 3px solid #000000; font-size: 1rem; cursor: pointer; background: #fff; }
+.submit-btn { width: 100%; background-color: #2ecc71; color: #ffffff; font-size: 1.2rem; font-weight: 800; padding: 15px; border: 3px solid #000000; box-shadow: 5px 5px 0px #000000; cursor: pointer; margin-top: 20px; }
+.submit-btn:hover { background-color: #000000; color: #2ecc71; }
 
 /* RESULTS AND ABOUT */
-.result-box { margin-top: 25px; padding: 20px; background-color: #f1f8ff; border: 3px dashed #2ecc71; text-align: center; }
-.reset-btn { background-color: #ffffff; border: 2px solid #000000; padding: 8px 15px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-.about-section { padding: 60px 20px; background-color: #ffffff; text-align: center; }
-.team-members { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-left: 12px; }
-.member { background-color: #f9f9f9; border: 2px solid #000000; padding: 15px; min-width: 250px; }
-.member h4 { color: #2ecc71; margin-bottom: 5px; }
+.result-box { margin-top: 25px; padding: 30px; background-color: #e8f5e9; border: 3px dashed #2ecc71; text-align: center; }
+.team-members { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.member { background-color: #ffffff; border: 3px solid #000000; padding: 20px; width: 280px; box-shadow: 5px 5px 0px #000000; }
+.member:hover { background-color: #2ecc71; color: #ffffff; }
+.member h4 { color: #2ecc71; }
+.member:hover h4 { color: #ffffff; }
 
-/* FOOTER - DARK AND IMPACTFUL */
-footer { background-color: #000000; color: #ffffff; text-align: center; padding: 20px; font-size: 14px; }
+/* FOOTER */
+footer { background-color: #000000; color: #ffffff; text-align: center; padding: 30px; font-weight: bold; }
