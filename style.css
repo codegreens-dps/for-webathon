@@ -1,4 +1,6 @@
-/* --- ECOFOOTPRINT: MASTER STYLE SHEET (PRODUCTION READY) --- */
+/* --- ECOFOOTPRINT: SYSTEM ARCHITECTURE --- */
+/* DEVS: KUNAL & MEENAKSHI | WEBATHON 2026 | POWERED BY CAFFEINE */
+
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap");
 
 :root {
@@ -7,23 +9,23 @@
     --orange: #ff5722;
     --yellow: #ffd700;
     --border-thick: 4px solid black;
-    --shadow: 10px 10px 0px black; /* Slightly larger shadow for depth */
-    --spacing-lg: 120px; /* Increased for breathing room */
+    --shadow: 10px 10px 0px black;
+    --spacing-lg: 120px;
 }
 
-/* --- RESET & GLOBAL --- */
+/* i watched a 10min youtube video on 2x speed for these css variables, pls dont delete or the universe collapses */
 * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
 body { 
     font-family: "Space Grotesk", sans-serif; 
     background-color: var(--bg-cream); 
     color: black; 
-    line-height: 1.8; /* Increased for readability */
+    line-height: 1.8; 
     overflow-x: hidden; 
     cursor: crosshair;
     background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), 
                       linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px); 
-    background-size: 80px 80px; /* Larger grid for a less cluttered feel */
+    background-size: 80px 80px;
 }
 
 ::selection { background-color: var(--green); color: black; }
@@ -99,7 +101,7 @@ body {
     font-weight: 800; background: var(--yellow); cursor: pointer;
 }
 
-/* --- THE SYSTEM OVERRIDE (WINNER PROTOCOL) --- */
+/* --- SYSTEM OVERRIDE / WINNER PROTOCOL --- */
 .terminal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: black; z-index: 9999; display: flex;
