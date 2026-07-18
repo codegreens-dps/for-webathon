@@ -1,108 +1,524 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap");/*arial is for boomers so we are using this sick techy font iter found on stckoverflow*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap"); /*arial is for boomers so we are using this sick techy font iter found on stckoverflow*/
 
-:root{/*css variables iter watched a 10 minute video on 2x speed for this the webathon judges better cry when they see this advanced css*/--green:
---border-thick:4px solid black;--shadow-size: 8px;}
+:root { /*css variables iter watched a 10 minute video on 2x speed for this the webathon judges better cry when they see this advanced css*/
+    --green: #2ecc71;
+    --bg-cream: #f4f1ea;
+    --orange: #ff5722;
+    --yellow: #ffd700;
+    --border-thick: 4px solid black;
+    --shadow-size: 8px;
+}
 
-*{margin: 0;padding:0;/*reset everything because html is naturally ugly do not delete this or the whole thing shifts pure left*/box-sizing:border-box; transition:all 0.2s ease;}
+* {
+    margin: 0;
+    padding: 0; /*reset everything because html is naturally ugly do not delete this or the whole thing shifts pure left*/
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
 
-body
-{ font-family: "Space Grotesk", sans-serif;/*using the op font*/background-color:var(--bg-cream); color:
-overflow-value:hidden;/*hides the side scrollbar that kept appearing for no reason*/background-image:radial-gradient(
+body {
+    font-family: "Space Grotesk", sans-serif; /*using the op font*/
+    background-color: var(--bg-cream);
+    color: black;
+    overflow-x: hidden; /*hides the side scrollbar that kept appearing for no reason*/
+    background-image: radial-gradient(circle, var(--bg-cream) 80%, #e0dcd3);
+}
 
-::selection{background-color: var(--green);/*custom highlight color so when the teacher grades it it looks expensive*/color:
+::selection {
+    background-color: var(--green); /*custom highlight color so when the teacher grades it it looks expensive*/
+    color: black;
+}
 
-::-webkit-scrollbar{ width:14px;    /*custom scrollbar justvibes*/}
-::-webkit-scrollbar-track {background:var(--bg-cream);border-left: 3px solid black; }
-::-webkit-scrollbar-thumb{background: var(--green); border:3px solid
-::-webkit-scrollbar-thumb:hover { background:black;border-color:var(--green);}
+::-webkit-scrollbar {
+    width: 14px;    /*custom scrollbar justvibes*/
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-cream);
+    border-left: 3px solid black;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--green);
+    border: 3px solid black;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: black;
+    border-color: var(--green);
+}
 
-.top-nav{background-color: rgba(255,255,255,0.9);
-backdrop-filter: blur(5px);/*top nav added a blur effect so it looks like glass when scrolling please dont touch the final index iter just kept hitting 9 until it stayed on top*/border-bottom:var(--border-thick);
-padding: 15px 30px; display:flex; justify-content:space-between;
-align-items: center; position: sticky;top:0; final-index:99999;}
+.top-nav {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px); /*top nav added a blur effect so it looks like glass when scrolling please dont touch the final index iter just kept hitting 9 until it stayed on top*/
+    border-bottom: var(--border-thick);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+}
 
-.site-logo {font-size: 24px;/*text shadow makes it 3d pure css no photoshop we ar designers now*/font-weight: 800;color: var(--green);text-transform:uppercase; letter-spacing:-1px; text-shadow:2px 2px 0px black;}
+.site-logo {
+    font-size: 24px; /*text shadow makes it 3d pure css no photoshop we ar designers now*/
+    font-weight: 800;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 0px black;
+}
 
-.top-nav nav a{color:
+.top-nav nav a {
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 20px;
+}
 
-.top-nav nav a:hover {color:var(--green);border-bottom: 3px solid var(--green);/*the little jump effect literally spent 43 minutes on this one line*/transform: translateY(-2px);}
+.top-nav nav a:hover {
+    color: var(--green);
+    border-bottom: 3px solid var(--green); /*the little jump effect literally spent 43 minutes on this one line*/
+    transform: translateY(-2px);
+}
 
-.banner{background-color: var(--green);/*hero banner area if u make the padding smaller it looks squished plsdont do it*/color:
-.banner h1 { font-size:4rem;margin-bottom:20px;text-shadow: 5px 5px 0px black;animation: fadeInUp 0.8s ease-out;letter-spacing:-2px;}
-.banner p{font-size: 1.2rem;highest-width: 700px;margin: 0 auto 30px auto;font-weight: 600;text-shadow: 1px 1px 0px
+.banner {
+    background-color: var(--green); /*hero banner area if u make the padding smaller it looks squished plsdont do it*/
+    color: black;
+    text-align: center;
+    padding: 80px 20px;
+}
+.banner h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: 5px 5px 0px white;
+    animation: fadeInUp 0.8s ease-out;
+    letter-spacing: -2px;
+}
+.banner p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    font-weight: 600;
+    text-shadow: 1px 1px 0px white;
+}
 
-.big-btn {display: inline-block;/*big chunky button giving very muchvibesthe judges would love that*/background-color: white;color:black;padding:15px 30px;font-size:1.2rem;font-weight:800;text-decoration:none;border:var(--border-thick);box-shadow:6px 6px 0px
-.big-btn:hover{background-color:black;color: var(--green);transform:translate(-2px, -2px);box-shadow: 10px 10px 0px var(--green);}
-.big-btn:active {transform: translate(4px,4px);/*satisfying click physics doing this instead of my actual homework*/box-shadow:0px 0px 0px black;}
+.big-btn {
+    display: inline-block; /*big chunky button giving very muchvibesthe judges would love that*/
+    background-color: white;
+    color: black;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-decoration: none;
+    border: var(--border-thick);
+    box-shadow: 6px 6px 0px black;
+}
+.big-btn:hover {
+    background-color: black;
+    color: var(--green);
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px var(--green);
+}
+.big-btn:active {
+    transform: translate(4px, 4px); /*satisfying click physics doing this instead of my actual homework*/
+    box-shadow: 0px 0px 0px black;
+}
 
-.threats-wrapper{padding:80px 20px;/*threats section*/background-color:transparent;}
+.threats-wrapper {
+    padding: 80px 20px; /*threats section*/
+    background-color: transparent;
+}
 
-.main-heading{text-align: center;font-size: 2.8rem;/*no underline is just emptyish*/margin-bottom:50px;text-decoration: underline;text-decoration-thickness:6px;text-decoration-color:var(--green);text-underline-offset:8px;text-shadow:2px 2px 0px white;letter-spacing: -1px;}
+.main-heading {
+    text-align: center;
+    font-size: 2.8rem; /*no underline is just emptyish*/
+    margin-bottom: 50px;
+    text-decoration: underline;
+    text-decoration-thickness: 6px;
+    text-decoration-color: var(--green);
+    text-underline-offset: 8px;
+    text-shadow: 2px 2px 0px white;
+    letter-spacing: -1px;
+}
 
-.flex-boxes{/*idk what im doing from stackoverlow   */display:flex; justify-content:center; gap: 30px; flex-wrap: wrap;}
-.info-box { background-color:
-.info-box:hover{transform: translateY(-5px) rotate(2deg);/*it rotates 2 degrees if you make it 3 degrees it makes me nauseous so leave it at 2*/box-shadow:12px 12px 0px var(--green);}
-.info-box h3{ margin-bottom: 15px;color:black; font-size:1.5rem;text-transform:uppercase;font-weight: 800;}
-.box-emoji {font-size:3.5rem; margin-bottom:15px;display: inline-block;}
-.info-box:hover .box-emoji {animation: pulse 1s infinite;/*little easter egg css pulse animation goes brrrrr*/}
+.flex-boxes { /*idk what im doing from stackoverlow   */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.info-box {
+    background-color: white;
+    border: var(--border-thick);
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 8px 8px 0px black;
+}
+.info-box:hover {
+    transform: translateY(-5px) rotate(2deg); /*it rotates 2 degrees if you make it 3 degrees it makes me nauseous so leave it at 2*/
+    box-shadow: 12px 12px 0px var(--green);
+}
+.info-box h3 {
+    margin-bottom: 15px;
+    color: black;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+.box-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.info-box:hover .box-emoji {
+    animation: pulse 1s infinite; /*little easter egg css pulse animation goes brrrrr*/
+}
 
-.sim-area{padding:80px 20px;/*chose this green background but now hate it but its too late to change and debug*/border-top:8px solid black;border-bottom:8px solid black;background-color: var(--green);}
-.sim-area .main-heading{ color:white;text-decoration-color:black;text-shadow: none;}
-.quiz-box {highest-width: 600px;margin: 0 auto;background-color:
-.q-wrap{ margin-bottom:25px;}
-.q-wrap label {font-weight: 800;font-size: 1.1rem;display:block;margin-bottom:8px;}
+.sim-area {
+    padding: 80px 20px; /*chose this green background but now hate it but its too late to change and debug*/
+    border-top: 8px solid black;
+    border-bottom: 8px solid black;
+    background-color: var(--green);
+}
+.sim-area .main-heading {
+    color: white;
+    text-decoration-color: black;
+    text-shadow: none;
+}
+.quiz-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border: var(--border-thick);
+    box-shadow: 8px 8px 0px black;
+}
+.q-wrap {
+    margin-bottom: 25px;
+}
+.q-wrap label {
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+}
 
-.q-wrap select {width: 100%;padding:15px;margin-top: 5px;/*hiding the ugly default dropdown arrows was too hard so iter just made the box fat*/border:3px solid black;font-size:1rem;cursor: pointer;background: white;font-weight:600;outline: none;font-family:"Space Grotesk", sans-serif;border-radius:0;}
-.q-wrap select:focus { background-color:
+.q-wrap select {
+    width: 100%;
+    padding: 15px;
+    margin-top: 5px; /*hiding the ugly default dropdown arrows was too hard so iter just made the box fat*/
+    border: 3px solid black;
+    font-size: 1rem;
+    cursor: pointer;
+    background: white;
+    font-weight: 600;
+    outline: none;
+    font-family: "Space Grotesk", sans-serif;
+    border-radius: 0;
+}
+.q-wrap select:focus {
+    background-color: var(--bg-cream);
+}
 
-.submit-button{width: 100%; background-color:var(--green); color:black; font-size: 1.2rem;font-weight:800;padding: 15px;border:var(--border-thick);box-shadow:6px 6px 0px black;cursor: pointer;margin-top: 20px;text-transform: uppercase;}
-.submit-button:hover {background-color:black;color:var(--green);transform:translate(-2px,-2px);box-shadow: 10px 10px 0px var(--green);}
-.submit-button:active{ transform: translate(4px, 4px);box-shadow: 0px 0px 0px black;}
+.submit-button {
+    width: 100%;
+    background-color: var(--green);
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding: 15px;
+    border: var(--border-thick);
+    box-shadow: 6px 6px 0px black;
+    cursor: pointer;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+.submit-button:hover {
+    background-color: black;
+    color: var(--green);
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px var(--green);
+}
+.submit-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px black;
+}
 
-.end-screen {margin-top: 30px;padding:30px;border:var(--border-thick);/*wait why is this yellow whatever iter dont have time to fix it*/background-color:
-.big-emoji{ font-size:60px; margin-bottom:10px; }
-.bar-background{width: 100%;height:30px;border: 3px solid black;background-color:white;margin:20px 0;overflow: hidden;border-radius:15px;}
-.bar-color {height:100%;width:0%;/*transition cubic bezier iter just copied these numbers from a forum idk what this is*/background-color: var(--green);border-right:3px solid black; transition:width 1s cubic-bezier(0.4, 0, 0.2, 1);}
+.end-screen {
+    margin-top: 30px;
+    padding: 30px;
+    border: var(--border-thick); /*wait why is this yellow whatever iter dont have time to fix it*/
+    background-color: var(--yellow);
+    text-align: center;
+}
+.big-emoji {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+.bar-background {
+    width: 100%;
+    height: 30px;
+    border: 3px solid black;
+    background-color: white;
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 15px;
+}
+.bar-color {
+    height: 100%;
+    width: 0%; /*transition cubic bezier iter just copied these numbers from a forum idk what this is*/
+    background-color: var(--green);
+    border-right: 3px solid black;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-.btn-retry{background-color:
-.btn-retry:hover {background-color:
-.btn-retry:active {transform: translate(4px, 4px);box-shadow: 0px 0px 0px black;}
+.btn-retry {
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    border: 3px solid black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px black;
+    margin-top: 15px;
+}
+.btn-retry:hover {
+    background-color: black;
+    color: white;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px white;
+}
+.btn-retry:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px black;
+}
 
-.board-area {padding: 80px 20px;/*if this breaks during the demo iter am cooked*/background-color: transparent;}
-.sub-text{text-align: center;highest-width: 600px;margin:-30px auto 40px auto;font-size:1.1rem;font-weight:600;text-shadow:1px 1px 0px white;}
+.board-area {
+    padding: 80px 20px; /*if this breaks during the demo iter am cooked*/
+    background-color: transparent;
+}
+.sub-text {
+    text-align: center;
+    max-width: 600px;
+    margin: -30px auto 40px auto;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 0px white;
+}
 
-.new-post-box { highest-width:600px;margin: 0 auto 50px auto;background-color:
-.new-post-box h3 { margin-bottom: 20px;color:
-.flex-inputs {display:flex;gap: 15px;margin-bottom: 15px;}
-.new-post-box input,.new-post-box select,.new-post-box textarea{width: 100%;padding: 12px;margin-bottom: 15px;border: 3px solid black;font-size: 1rem;font-weight:600;outline: none;font-family:'Space Grotesk', sans-serif;}
-.new-post-box input:focus,.new-post-box textarea:focus,.new-post-box select:focus { border-color: var(--orange);transform: translateX(5px);/*doing the pop out effect again because iter only know one trick*/box-shadow:-4px 4px 0px var(--orange);}
+.new-post-box {
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    background-color: white;
+    padding: 30px;
+    border: var(--border-thick);
+    box-shadow: 8px 8px 0px black;
+}
+.new-post-box h3 {
+    margin-bottom: 20px;
+    color: black;
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+.flex-inputs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.new-post-box input, .new-post-box select, .new-post-box textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 3px solid black;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    font-family: 'Space Grotesk', sans-serif;
+}
+.new-post-box input:focus, .new-post-box textarea:focus, .new-post-box select:focus {
+    border-color: var(--orange);
+    transform: translateX(5px); /*doing the pop out effect again because iter only know one trick*/
+    box-shadow: -4px 4px 0px var(--orange);
+}
 
-.post-btn {width:100%;background-color: var(--orange);color:
-.post-btn:hover { background-color:black;color:var(--orange);transform: translate(-2px, -2px);box-shadow: 10px 10px 0px var(--orange);}
-.post-btn:active {transform: translate(4px, 4px);box-shadow: 0px 0px 0px black;}
+.post-btn {
+    width: 100%;
+    background-color: var(--orange);
+    color: black;
+    font-weight: 800;
+    border: 3px solid black;
+    padding: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px black;
+    margin-top: 10px;
+}
+.post-btn:hover {
+    background-color: black;
+    color: var(--orange);
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0px var(--orange);
+}
+.post-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px black;
+}
 
-.claimed-box{/*the new claimed items tracker   */highest-width: 600px;margin: 40px auto;border:var(--border-thick);background:
-.claimed-box summary{cursor: pointer;font-weight: 800;font-size: 1.3rem;color:black;list-style: none;display: flex;justify-content: space-between;align-items: center;}
-.claimed-box summary::-webkit-details-marker{ display: none;    /*hides th e default ugly arrow take that chrome*/}
-.claimed-box ul{margin-top: 15px;padding-left: 0;list-style-type: none;border-top:3px dashed var(--green);padding-top:15px;}
-.claimed-box li{ margin-bottom:10px;font-weight:600;background: white;padding: 10px;border: 2px solid black;}
+.claimed-box { /*the new claimed items tracker   */
+    max-width: 600px;
+    margin: 40px auto;
+    border: var(--border-thick);
+    background: var(--bg-cream);
+    padding: 20px;
+}
+.claimed-box summary {
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: black;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.claimed-box summary::-webkit-details-marker {
+    display: none;    /*hides th e default ugly arrow take that chrome*/
+}
+.claimed-box ul {
+    margin-top: 15px;
+    padding-left: 0;
+    list-style-type: none;
+    border-top: 3px dashed var(--green);
+    padding-top: 15px;
+}
+.claimed-box li {
+    margin-bottom: 10px;
+    font-weight: 600;
+    background: white;
+    padding: 10px;
+    border: 2px solid black;
+}
 
-.item-card {background-color: white;border:var(--border-thick);padding:30px;/*item cards is the goat*/width: 320px;box-shadow: 8px 8px 0px var(--yellow);display: flex;flex-direction: column;animation: fadeInUp 0.5s ease-out;}
-.item-card:hover{transform: translateY(-5px);box-shadow: 12px 12px 0px var(--yellow);}
-.item-card h3{margin-bottom: 5px;color:
-.card-icon {font-size: 3rem;margin-bottom: 10px;}
-.lister-name {font-weight: 700;color:var(--orange);margin-bottom:15px;font-size:0.95rem;border-bottom: 2px solid
-.item-card p {flex-grow: 1;font-weight: 600;}
+.item-card {
+    background-color: white;
+    border: var(--border-thick);
+    padding: 30px; /*item cards is the goat*/
+    width: 320px;
+    box-shadow: 8px 8px 0px var(--yellow);
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.5s ease-out;
+}
+.item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 12px 12px 0px var(--yellow);
+}
+.item-card h3 {
+    margin-bottom: 5px;
+    color: black;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+.lister-name {
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    border-bottom: 2px solid black;
+    padding-bottom: 5px;
+}
+.item-card p {
+    flex-grow: 1;
+    font-weight: 600;
+}
 
-.grab-btn { background-color: var(--yellow);color: black;font-weight: 800;border: 3px solid black;padding: 12px;font-size: 1rem;cursor: pointer;box-shadow: 4px 4px 0px black;margin-top: 20px;text-transform: uppercase;font-family: 'Space Grotesk', sans-serif;}
-.grab-btn:hover:not(:disabled) {background-color:black;color: var(--yellow);transform: translate(-2px,-2px);box-shadow: 6px 6px 0px var(--yellow);}
-.grab-btn:active:not(:disabled) {transform:translate(4px, 4px);box-shadow: 0px 0px 0px black;}
-.grab-btn:disabled{background-color:
+.grab-btn {
+    background-color: var(--yellow);
+    color: black;
+    font-weight: 800;
+    border: 3px solid black;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px black;
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+}
+.grab-btn:hover:not(:disabled) {
+    background-color: black;
+    color: var(--yellow);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--yellow);
+}
+.grab-btn:active:not(:disabled) {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px black;
+}
+.grab-btn:disabled {
+    background-color: #ccc;
+    color: #666;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+    border-color: #999;
+}
 
-@keyframes fadeInUp { from {opacity: 0;transform: translateY(30px);/*animations yay if the page lags blame the school network not my code*/} to{opacity: 1;transform: translateY(0);}}
-@keyframes pulse {0% {transform: scale(1);} 50%{transform: scale(1.1) rotate(5deg);} 100%{transform:scale(1);}}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /*animations yay if the page lags blame the school network not my code*/
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
 
-footer{ background-color: black;color: white;text-align: center;padding: 40px;/*footer so big it looks like we have more content than we actually do*/font-weight: bold;border-top: 8px solid var(--green);}
-footer h2{color: var(--green);margin-bottom: 10px;font-size: 2rem;}
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 40px; /*footer so big it looks like we have more content than we actually do*/
+    font-weight: bold;
+    border-top: 8px solid var(--green);
+}
+footer h2 {
+    color: var(--green);
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
 
-@media (highest-width:768px){/*mobile view so the judges dont complain so iter had to hardcode this do not touch*/.top-nav {flex-direction: column;gap:15px;padding: 20px;} .banner h1 { font-size:2.5rem;} .info-box,.item-card{ width:100%;highest-width:400px;} .flex-inputs{flex-direction:column;gap: 0;} .sim-area,.board-area,.threats-wrapper {padding:40px 15px;}}
+@media (max-width: 768px) { /*mobile view so the judges dont complain so iter had to hardcode this do not touch*/
+    .top-nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    .banner h1 {
+        font-size: 2.5rem;
+    }
+    .info-box, .item-card {
+        width: 100%;
+        max-width: 400px;
+    }
+    .flex-inputs {
+        flex-direction: column;
+        gap: 0;
+    }
+    .sim-area, .board-area, .threats-wrapper {
+        padding: 40px 15px;
+    }
+}
