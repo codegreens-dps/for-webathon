@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap"); /* arial is for boomers, we use the sick techy font cuz we r devs */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap"); 
+/* arial is for boomers, we use the sick techy font cuz we r devs */
 
 :root { --green: #2ecc71; --bg-cream: #f4f1ea; --orange: #ff5722; --yellow: #ffd700; --border-thick: 4px solid black; --shadow-size: 8px; } 
 
@@ -19,8 +20,15 @@ body { font-family: "Space Grotesk", sans-serif; background-color: var(--bg-crea
 /* top nav: spent 3hrs on flexbox, if it breaks dont tell me */
 .top-nav { background-color: rgba(255, 255, 255, 0.9); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); border-bottom: var(--border-thick); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; } 
 
-/* LOGO: Added user-select: none so it doesnt trigger text highlight on double-click */
-.site-logo { font-size: 24px; font-weight: 800; color: var(--green); text-transform: uppercase; letter-spacing: -1px; text-shadow: 2px 2px 0px black; position: relative; overflow: hidden; display: inline-block; padding-right: 10px; animation: colorShift 4s infinite alternate; user-select: none; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; } 
+/* LOGO: Added robust cross-browser non-select logic so double-clicking triggers protocol instantly */
+.site-logo { 
+    font-size: 24px; font-weight: 800; color: var(--green); text-transform: uppercase; letter-spacing: -1px; text-shadow: 2px 2px 0px black; position: relative; overflow: hidden; display: inline-block; padding-right: 10px; animation: colorShift 4s infinite alternate; 
+    cursor: pointer; 
+    user-select: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+} 
 .site-logo::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent); transform: skewX(-20deg); animation: logoShine 3s infinite; } 
 
 .top-nav nav a { color: black; text-decoration: none; font-weight: 700; margin-left: 20px; cursor: pointer; display: inline-block; }
@@ -118,6 +126,6 @@ footer h2 { color: var(--green); margin-bottom: 15px; font-size: 2.2rem; text-tr
 @media (max-width: 768px) { .top-nav { flex-direction: column; gap: 15px; padding: 20px; } .banner h1 { font-size: 2.5rem; } .info-box, .item-card { width: 100%; max-width: 400px; animation: none; } .flex-inputs { flex-direction: column; gap: 0; } .sim-area, .board-area, .threats-wrapper { padding: 40px 15px; } }
 
 /* THE WINNER PROTOCOL - JUDGES WILL WEEP */
-.winner-mode { filter: sepia(0.4) hue-rotate(20deg) brightness(1.1) saturate(1.5); border: 15px solid var(--yellow); }
+.winner-mode { filter: sepia(0.4) hue-rotate(20deg) brightness(1.2) saturate(2.5); border: 15px solid var(--yellow); }
 .victory-banner { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 215, 0, 0.3); z-index: 999999; display: flex; justify-content: center; align-items: center; pointer-events: none; animation: popIn 0.5s ease-out; }
 @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
