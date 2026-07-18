@@ -1,6 +1,9 @@
 /* base setup - resetting everything so it doesnt look weird */
 * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.2s ease; }
-body { font-family: Arial, 'Segoe UI', sans-serif; /* changed order idk */ background-color: white; color: #333; line-height: 1.6; overflow-x: hidden; /* stole this dot background from stackoverflow lol took me 2 hours */ background-image: radial-gradient(#ccc 1px, transparent 1px); background-size: 20px 20px; }
+body { font-family: 'Arial', sans-serif; background-color: white; color: #333; line-height: 1.6; overflow-x: hidden; 
+       /* stole this dot background from stackoverflow lol took me 2 hours */ 
+       background-image: radial-gradient(#ccc 1px, transparent 1px); background-size: 20px 20px; }
+
 ::selection { background-color: #2ecc71; color: #000; }
 
 /* custom scrollbar for extra points from the judges */
@@ -10,7 +13,7 @@ body { font-family: Arial, 'Segoe UI', sans-serif; /* changed order idk */ backg
 ::-webkit-scrollbar-thumb:hover { background: black; border-color: #2ecc71; }
 
 /* top nav */
-.top-nav { background-color: #fff; border-bottom: 4px solid black; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; /* made this super high just in case it hides behind something */ }
+.top-nav { background-color: #fff; border-bottom: 4px solid black; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; }
 .site-logo { font-size: 24px; font-weight: 800; color: #2ecc71; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 0px black; }
 .top-nav nav a { color: #000; text-decoration: none; font-weight: bold; margin-left: 20px; padding: 5px; border-bottom: 3px solid transparent; }
 .top-nav nav a:hover { color: #2ecc71; border-bottom: 3px solid #2ecc71; transform: translateY(-2px); }
@@ -26,7 +29,6 @@ body { font-family: Arial, 'Segoe UI', sans-serif; /* changed order idk */ backg
 .threats-wrapper { padding: 80px 20px; background-color: transparent; }
 .main-heading { text-align: center; font-size: 2.5rem; margin-bottom: 50px; text-decoration: underline; text-decoration-thickness: 6px; text-decoration-color: #2ecc71; text-underline-offset: 8px; text-shadow: 2px 2px 0px white; }
 
-/* flexbox is so confusing but this finally worked */
 .flex-boxes { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
 .info-box { background-color: #fff; border: 4px solid #000; padding: 30px; width: 320px; box-shadow: 8px 8px 0px #2ecc71; }
 .info-box:hover { transform: translateY(-5px) rotate(2deg); box-shadow: 12px 12px 0px #2ecc71; }
@@ -42,15 +44,12 @@ body { font-family: Arial, 'Segoe UI', sans-serif; /* changed order idk */ backg
 .q-wrap select { width: 100%; padding: 12px; margin-top: 5px; border: 3px solid black; font-size: 1rem; cursor: pointer; background: white; font-weight: 600; outline: none; }
 .q-wrap select:focus { background-color: #e8f8f5; border-color: #2ecc71; transform: translateX(5px); }
 
-/* the big submit button */
 .submit-button { width: 100%; background-color: #2ecc71; color: black; font-size: 1.2rem; font-weight: 800; padding: 15px; border: 4px solid #000; box-shadow: 6px 6px 0px black; cursor: pointer; margin-top: 20px; animation: pulse 2s infinite; text-transform: uppercase; }
 .submit-button:hover { background-color: black; color: #2ecc71; animation: none; transform: translate(-2px, -2px); box-shadow: 10px 10px 0px #2ecc71; }
 .end-screen { margin-top: 30px; padding: 30px; border: 4px solid black; background-color: #fff9c4; text-align: center; box-shadow: 8px 8px 0px black; animation: fadeInUp 0.5s ease-out; }
 .big-emoji { font-size: 50px; margin-bottom: 10px; }
 
-/* progress bar stuff */
 .bar-background { width: 100%; height: 25px; border: 3px solid black; background-color: white; margin: 20px 0; overflow: hidden; }
-/* dont touch the transition here it breaks the animation i swear */
 .bar-color { height: 100%; width: 0%; background-color: #2ecc71; border-right: 3px solid black; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
 .btn-retry { background-color: #ff5252; color: white; font-weight: 800; border: 3px solid black; padding: 10px 20px; font-size: 1rem; cursor: pointer; box-shadow: 4px 4px 0px black; margin-top: 15px; }
 .btn-retry:hover { background-color: #000; color: #ff5252; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ff5252; }
@@ -61,27 +60,22 @@ body { font-family: Arial, 'Segoe UI', sans-serif; /* changed order idk */ backg
 .new-post-box { max-width: 600px; margin: 0 auto 50px auto; background-color: #fff9c4; border: 4px dashed #ff9800; padding: 30px; border-radius: 10px; box-shadow: 8px 8px 0px #ff9800; }
 .new-post-box h3 { margin-bottom: 15px; color: #d35400; font-size: 1.5rem; text-align: center; font-weight: 800; text-transform: uppercase; }
 .flex-inputs { display: flex; gap: 15px; margin-bottom: 15px; }
-.new-post-box input, .new-post-box select, .new-post-box textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 3px solid black; font-size: 1rem; font-weight: 600; font-family: 'Segoe UI', sans-serif; outline: none; }
-.new-post-box input:focus, .new-post-box textarea:focus, .new-post-box select:focus { border-color: #ff9800; background-color: #fff3e0; transform: translateX(5px); }
+.new-post-box input, .new-post-box select, .new-post-box textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 3px solid black; font-size: 1rem; font-weight: 600; outline: none; }
 .post-btn { width: 100%; background-color: #ff9800; color: #fff; font-size: 1.2rem; font-weight: 800; padding: 15px; border: 4px solid black; box-shadow: 6px 6px 0px black; cursor: pointer; text-transform: uppercase; }
 .post-btn:hover { background-color: black; color: #ff9800; transform: translate(-2px, -2px); box-shadow: 10px 10px 0px #ff9800; }
+
+/* --- THE NEW CLAIMED ITEMS TRACKER STYLING --- */
+.claimed-box { max-width: 600px; margin: 30px auto; border: 3px solid #2ecc71; background: #e8f8f5; padding: 20px; }
+.claimed-box summary { cursor: pointer; font-weight: bold; font-size: 1.2rem; color: #2ecc71; list-style: none; }
+.claimed-box ul { margin-top: 15px; padding-left: 20px; }
+.claimed-box li { margin-bottom: 5px; font-weight: 600; }
 
 /* item cards */
 .item-card { background-color: white; border: 4px solid black; padding: 30px; width: 320px; box-shadow: 8px 8px 0px #ffeb3b; display: flex; flex-direction: column; animation: fadeInUp 0.5s ease-out; }
 .item-card:hover { transform: translateY(-5px); box-shadow: 12px 12px 0px #ffeb3b; }
 .item-card h3 { margin-bottom: 5px; color: #000; font-size: 1.4rem; font-weight: 800; }
 .lister-name { font-weight: bold; color: #ff9800; margin-bottom: 10px; font-size: 0.9rem; }
-.item-card p { flex-grow: 1; }
 .grab-btn { background-color: #ffeb3b; color: black; font-weight: 800; border: 3px solid black; padding: 10px; font-size: 1rem; cursor: pointer; box-shadow: 4px 4px 0px black; margin-top: 20px; text-transform: uppercase; }
-.grab-btn:hover:not(:disabled) { background-color: black; color: #ffeb3b; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #ffeb3b; }
-.grab-btn:disabled { background-color: #e0e0e0; color: #9e9e9e; box-shadow: none; border-color: #9e9e9e; transform: none; cursor: not-allowed; }
-
-/* Upgraded Footer Container */
-.about-us { text-align: center; padding: 60px 20px; /* A subtle inner shadow to separate it slightly from the section above */ box-shadow: inset 0px 10px 20px rgba(0,0,0,0.5); }
-/* Upgraded Footer Header */
-.about-us h2 { font-size: 2.5rem; /* Makes it nice and chunky */ text-transform: uppercase; /* Adds to that bold, systemic change vibe */ letter-spacing: 2px; color: white; /* Layered shadow: The hard green offset + a subtle green neon glow */ text-shadow: 4px 4px 0px #2ecc71, 0px 0px 15px rgba(46, 204, 113, 0.3); transition: all 0.3s ease; cursor: default; }
-/* 🤜🤛 The interactive hover effect for extra points */
-.about-us h2:hover { /* Flips the shadow direction and intensifies the glow! */ text-shadow: -4px -4px 0px #2ecc71, 0px 0px 25px rgba(46, 204, 113, 0.6); transform: translateY(-2px); }
 
 /* animations yay */
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -89,4 +83,4 @@ body { font-family: Arial, 'Segoe UI', sans-serif; /* changed order idk */ backg
 footer { background-color: black; color: white; text-align: center; padding: 30px; font-weight: bold; border-top: 5px solid #2ecc71; }
 
 /* mobile view so the judges dont complain */
-@media (max-width: 768px) { .top-nav { flex-direction: column; gap: 15px; padding: 15px; } .top-nav nav a { margin: 0 10px; } .banner h1 { font-size: 2.2rem; } .info-box, .item-card { width: 100%; } .quiz-box, .new-post-box { padding: 20px; } .flex-inputs { flex-direction: column; gap: 0; } }
+@media (max-width: 768px) { .top-nav { flex-direction: column; gap: 15px; } .banner h1 { font-size: 2.2rem; } .info-box, .item-card { width: 100%; } }
