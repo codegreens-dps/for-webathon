@@ -1,208 +1,130 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js"; /* this works finally */
-import{getFirestore,collection,addDoc,onSnapshot,query,orderBy,updateDoc,doc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&display=swap"); /* arial is for boomers so we are using this sick techy font iter found on stackoverflow */
 
-/* DO NOT TOUCH THE CONFIG OR THE DB EXPLODES */
-var conf = {apiKey:"AIzaSyBNO8SiOBW49CqL7YgHd572pF9mikE7ABo",authDomain:"ecofootprint-9c4ed.firebaseapp.com",projectId:"ecofootprint-9c4ed",storageBucket:"ecofootprint-9c4ed.firebasestorage.app",messagingSenderId:"425267033599",appId:"1:425267033599:web:3554770c24a204594ba3ca",measurementId:"G-NCNFZTHKS4"};
-var firebaseApp = initializeApp(conf);
-var database = getFirestore(firebaseApp);
+:root { --green: #2ecc71; --bg-dark: #050505; --card-dark: #0a0a0a; --orange: #ff5722; --yellow: #ffd700; --border-thick: 4px solid var(--green); --shadow-size: 8px; } /* css variables updated for full dark mode. we are hackers now */
 
-/* security stuff from stackoverflow */
-function cln(s){
-  if(!s)return"";
-  var d=document.createElement('div');
-  d.textContent=s;
-  return d.innerHTML;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); } /* reset everything because html is naturally ugly upgraded to cubic-bezier for buttery smooth OP physics */
 
-window.onload = function() {
-  
-  /* quiz section logic */
-  document.getElementById("footprintForm").onsubmit = function(e) {
-    e.preventDefault(); /* stops page reload */
-    
-    /* grabbing answers and forcing them to be real numbers bcuz javascript is dumb */
-    var v1 = parseInt(document.getElementById('q1').value, 10) || 0;
-    var v2 = parseInt(document.getElementById('q2').value, 10) || 0;
-    var v3 = parseInt(document.getElementById('q3').value, 10) || 0;
-    var v4 = parseInt(document.getElementById('q4').value, 10) || 0;
-    var v5 = parseInt(document.getElementById('q5').value, 10) || 0;
+body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-dark); color: white; overflow-x: hidden; cursor: crosshair; background-image: radial-gradient(circle at top center, rgba(46, 204, 113, 0.15) 0%, transparent 50%), radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px); background-size: 100% 100%, 25px 25px; background-attachment: fixed; } /* upgraded main body with an ambient neon green top glow behind the micro-dot matrix so it pops */
 
-    var summ = v1 + v2 + v3 + v4 + v5;
+::selection { background-color: var(--green); color: black; text-shadow: none; } /* custom highlight color so when the teacher grades it it looks expensive */
 
-    /* throwing it into the cloud */
-    addDoc(collection(database, 'simulatorScores'), { 
-        score: summ, 
-        date: serverTimestamp() /* using server time so broken laptops dont break it */ 
-    }).then(function(){
-        // saved successfully
-    }).catch(function(err){
-        console.log("bruh error wtf: " + err); /* checking console is basically screaming into space */
-    });
+::-webkit-scrollbar { width: 14px; } /* custom scrollbar just vibes */
+::-webkit-scrollbar-track { background: var(--bg-dark); border-left: 3px solid var(--green); }
+::-webkit-scrollbar-thumb { background: var(--green); border: 3px solid black; }
+::-webkit-scrollbar-thumb:hover { background: var(--orange); border-color: black; }
 
-    var fb = document.getElementById("feedbackText");
-    var emj = ""; var col = "";
+.top-nav { background-color: rgba(0, 0, 0, 0.85); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: var(--border-thick); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; box-shadow: 0 4px 30px rgba(46, 204, 113, 0.15); } /* top nav stealthy glass now casts a faint neon shadow */
 
-    /* judging the user heavily based on score */
-    if(summ > 79){
-        emj = "🌍"; col = "green";
-        fb.innerText = "🔥 INCREDIBLE! You implemented a true sustainable framework. By shifting to renewables and enforcing a circular economy, we can reach Net-Zero!";
-        fb.style.color = "green";
-    } else {
-        if(summ > 39){
-            emj = "⚠️"; col = "orange";
-            fb.innerText = "🌱 A GOOD START. But half-measures aren't enough. We need systemic shifts in lots of things. Try again!";
-            fb.style.color = "orange";
-        } else {
-            /* literal doomsday scenario */
-            emj = "❌"; col = "red";
-            fb.innerText = "🚨 DISASTER. Continuing the status quo guarantees severe global warming. We need massive policy shifts immediately.";
-            fb.style.color = "red";
-        }
-    }
+.site-logo { font-family: "Orbitron", sans-serif; font-size: 24px; font-weight: 800; color: var(--green); text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 0 10px var(--green), 2px 2px 0px var(--orange); position: relative; overflow: hidden; display: inline-block; padding-right: 10px; animation: colorShift 4s infinite alternate; } /* text shadow is pure neon now */
+.site-logo::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(46,204,113,0.8), transparent); transform: skewX(-20deg); animation: logoShine 3s infinite; } /* OP shine effect sliding across the logo in green */
 
-    document.getElementById("resultEmoji").innerText = emj;
-    document.getElementById('footprintForm').style.display = 'none';
-    document.getElementById("resultBox").style.display = 'block';
+.top-nav nav a { color: white; text-decoration: none; font-weight: 700; margin-left: 20px; cursor: pointer; display: inline-block; }
+.top-nav nav a:hover { color: var(--green); border-bottom: 3px solid var(--green); transform: translateY(-3px) scale(1.05); text-shadow: 0 0 10px var(--green); } /* links glow on hover */
 
-    var c = 0;
-    document.getElementById("scoreText").innerText = "0";
+.banner { background-color: #020202; background-image: radial-gradient(circle at 50% 100%, rgba(46, 204, 113, 0.25), transparent 70%); color: white; text-align: center; padding: 80px 20px; border-bottom: 8px solid var(--green); position: relative; box-shadow: inset 0 -30px 50px rgba(46, 204, 113, 0.1); } /* sick glowing reactor core gradient turned up to 11 */
+.banner h1 { font-family: "Orbitron", sans-serif; font-size: 4rem; margin-bottom: 20px; color: var(--green); text-shadow: 0 0 20px rgba(46,204,113,0.6), 4px 4px 0px black; animation: fadeInUp 0.8s ease-out, floatInfinite 5s ease-in-out infinite alternate; letter-spacing: -2px; } /* heading floats now too */
+.banner p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; font-weight: 600; color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
 
-    /* counting animation yt tutorial */
-    var tmr = setInterval(function(){
-        if(c >= summ){
-            clearInterval(tmr); /* stop counting or it goes to infinity */
-            document.getElementById("scoreText").innerText = summ;
-        } else {
-            c++;
-            document.getElementById("scoreText").innerText = c;
-        }
-    }, 20); 
+.big-btn { font-family: "Orbitron", sans-serif; display: inline-block; background-color: var(--green); color: black; padding: 15px 30px; font-size: 1.2rem; font-weight: 800; text-decoration: none; border: 3px solid var(--green); box-shadow: 0 0 15px rgba(46,204,113,0.6), 6px 6px 0px rgba(46,204,113,0.4); cursor: pointer; animation: glowPulse 2s infinite alternate; } /* massive glowing neon green button */
+.big-btn:hover { background-color: black; color: var(--green); border-color: var(--green); transform: translate(-3px, -3px) scale(1.02); box-shadow: 0 0 25px var(--green), 12px 12px 0px var(--green); animation: none; }
+.big-btn:active { transform: translate(4px, 4px) scale(0.98); box-shadow: 0px 0px 0px var(--green); } /* satisfying click physics doing this instead of my actual homework */
 
-    setTimeout(function(){
-        document.getElementById("barFill").style.width = summ + "%";
-        document.getElementById("barFill").style.backgroundColor = col;
-    }, 150); 
-  };
+/* --- FLOATING STATS WIDGET - HUD READOUT --- */
+.stats-banner { position: fixed; bottom: 30px; right: 30px; width: 280px; background-color: rgba(10,10,10,0.95); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); border: 2px solid var(--green); border-top: 10px solid var(--green); padding: 25px 20px; text-align: center; box-shadow: 0 0 30px rgba(46,204,113,0.4), inset 0 0 30px rgba(0,0,0,0.8); background-image: repeating-linear-gradient(90deg, rgba(46, 204, 113, 0.08) 0, rgba(46, 204, 113, 0.08) 1px, transparent 1px, transparent 20px); z-index: 9999; animation: floatInfinite 4s ease-in-out infinite alternate; }
+.stats-banner::before { content: '● SYSTEM SECURE'; color: var(--green); font-family: monospace; font-size: 0.8rem; position: absolute; top: 8px; left: 10px; animation: pulseMode 2s infinite; opacity: 0.8; letter-spacing: 1px; text-shadow: 0 0 5px var(--green); }
+.stats-banner h3 { font-family: "Orbitron", sans-serif; font-size: 1rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; margin-top: 10px; }
+#landfillCounter { color: var(--green); font-size: 3.2rem; font-weight: 900; text-shadow: 0 0 20px var(--green), 0 0 40px rgba(46,204,113,0.5); background: #000; padding: 10px; border: 2px dashed var(--green); border-radius: 5px; width: 100%; display: inline-block; animation: glowPulse 2s infinite alternate; letter-spacing: 4px; }
 
-  /* board stuff */
-  var refs = collection(database, "listedItems");
-  var qqq = query(refs, orderBy("timestamp", "desc")); /* sorts newest first so it looks active */
+.threats-wrapper { padding: 80px 20px; background-color: #060201; background-image: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255, 87, 34, 0.08) 20px, rgba(255, 87, 34, 0.08) 40px), radial-gradient(circle at center, rgba(255,87,34,0.1), transparent 70%); } /* pumped up the orange barcode scanning lines to pop more */
+.main-heading { font-family: "Orbitron", sans-serif; color: white; text-align: center; font-size: 2.8rem; margin-bottom: 50px; text-decoration: underline; text-decoration-thickness: 6px; text-decoration-color: var(--green); text-underline-offset: 8px; text-shadow: 0 0 15px rgba(255,87,34,0.5), 2px 2px 0px var(--orange); letter-spacing: -1px; transition: transform 0.3s ease; } /* no underline is just emptyish */
+.main-heading:hover { transform: scale(1.05) rotate(-1deg); text-shadow: 0 0 20px var(--green), 4px 4px 0px var(--green); } /* headings jump when you mouse over them because we are extra */
 
-  onSnapshot(qqq, function(s) {
-      var b = document.getElementById('live-board');
-      var l = document.getElementById('claimed-list');
-      
-      b.innerHTML = ""; l.innerHTML = ""; /* empty these out or it duplicates forever */
-      var i_c = 0; var c_c = 0;
+.flex-boxes { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; } /* idk what im doing from stackoverlow */
+.info-box { background-color: var(--card-dark); border: var(--border-thick); padding: 30px; width: 320px; text-align: center; box-shadow: 0 0 15px rgba(46,204,113,0.2), 8px 8px 0px var(--green); cursor: crosshair; animation: floatInfinite 4s ease-in-out infinite alternate; } /* boxes literally floating in anti-gravity with neon shadows */
+.info-box:hover { transform: translateY(-12px) rotate(2deg) scale(1.02); box-shadow: 0 0 30px rgba(255,87,34,0.4), 14px 14px 0px var(--orange); border-color: var(--orange); animation: none; } /* shifts color on hover */
+.info-box h3 { font-family: "Orbitron", sans-serif; margin-bottom: 15px; color: var(--green); font-size: 1.5rem; text-transform: uppercase; font-weight: 800; text-shadow: 0 0 8px rgba(46,204,113,0.4); }
+.box-emoji { font-size: 3.5rem; margin-bottom: 15px; display: inline-block; filter: drop-shadow(0 0 10px rgba(46,204,113,0.8)); }
+.info-box:hover .box-emoji { animation: pulse 1s infinite; transform: scale(1.2); filter: drop-shadow(0 0 15px rgba(255,87,34,0.9)); } /* little easter egg css pulse animation goes brrrrr */
 
-      s.forEach(function(d){
-          var o = d.data();
-          var iid = d.id;
-          
-          var n1 = cln(o.name);
-          var c2 = cln(o.claimedBy);
-          var l3 = cln(o.lister);
-          var d4 = cln(o.description);
+.sim-area { padding: 80px 20px; border-top: 8px solid var(--green); border-bottom: 8px solid var(--green); background-color: #030604; background-image: repeating-linear-gradient(45deg, rgba(46, 204, 113, 0.08) 0px, rgba(46, 204, 113, 0.08) 2px, transparent 2px, transparent 20px), repeating-linear-gradient(-45deg, rgba(46, 204, 113, 0.08) 0px, rgba(46, 204, 113, 0.08) 2px, transparent 2px, transparent 20px); animation: panGrid 15s linear infinite; box-shadow: inset 0 0 50px rgba(0,0,0,1); } /* brighter tactical moving diagonal wireframe mesh */
+.sim-area .main-heading { color: white; text-shadow: 0 0 15px rgba(255,87,34,0.5), 3px 3px 0px var(--orange); }
+.quiz-box { max-width: 600px; margin: 0 auto; background-color: rgba(10,10,10,0.9); padding: 40px; border: 4px solid var(--orange); box-shadow: 0 0 20px rgba(255,87,34,0.3), 10px 10px 0px var(--orange); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.q-wrap { margin-bottom: 25px; }
+.q-wrap label { font-weight: 800; font-size: 1.1rem; display: block; margin-bottom: 8px; color: white; }
 
-          if(o.status == "claimed"){
-              c_c++;
-              l.innerHTML = l.innerHTML + "<li>✅ <strong>" + n1 + "</strong> was snagged by " + c2 + "!</li>";
-          } else {
-              i_c++;
-              /* messy string concat bc backticks r for robots */
-              var html = "<div class='item-card' id='card-" + iid + "'>";
-              html += "<div class='card-icon'>" + o.icon + "</div>";
-              html += "<h3>" + n1 + "</h3>";
-              html += "<p class='lister-name'>Listed by: " + l3 + "</p>";
-              html += "<p>" + d4 + "</p>";
-              html += "<button class='grab-btn' id='btn-" + iid + "' onclick='claimIt(\"" + iid + "\")'>CLAIM FOR FREE</button>";
-              html += "</div>";
-              b.innerHTML += html;
-          }
-      });
+.q-wrap select { width: 100%; padding: 15px; margin-top: 5px; border: 3px solid var(--orange); font-size: 1rem; cursor: pointer; background: black; color: white; font-weight: 600; outline: none; font-family: inherit; border-radius: 0; box-shadow: 0 0 10px rgba(255,87,34,0.2), 4px 4px 0px rgba(255,87,34,0.3); } /* hacker dropdowns */
+.q-wrap select:focus { background-color: #111; border-color: var(--green); box-shadow: 0 0 15px rgba(46,204,113,0.4), -4px 4px 0px var(--green); transform: translateX(5px); } /* inputs now pop out when you click them */
 
-      var el = document.getElementById('landfillCounter');
-      if(el) { el.innerText = c_c; }
+.submit-button { font-family: "Orbitron", sans-serif; width: 100%; background-color: var(--orange); color: black; font-size: 1.2rem; font-weight: 800; padding: 15px; border: 4px solid black; box-shadow: 0 0 15px rgba(255,87,34,0.5), 6px 6px 0px var(--orange); cursor: pointer; margin-top: 20px; text-transform: uppercase; animation: glowPulseOrange 2.5s infinite alternate; }
+.submit-button:hover { background-color: black; color: var(--orange); border-color: var(--orange); transform: translate(-3px, -3px) scale(1.02); box-shadow: 0 0 25px var(--orange), 12px 12px 0px var(--orange); animation: none; }
+.submit-button:active { transform: translate(4px, 4px) scale(0.98); box-shadow: 0px 0px 0px var(--orange); }
 
-      if(i_c == 0){
-          b.innerHTML = "<h3 style='width:100%;text-align:center;color:gray;'>No items available right now. Be the first to list something!</h3>";
-      }
-      if(c_c == 0){
-          l.innerHTML = "<li>No items claimed yet... be the first!</li>";
-      }
-  });
+.end-screen { margin-top: 30px; padding: 30px; border: 4px solid var(--yellow); background-color: #0a0800; background-image: repeating-radial-gradient(circle at center, transparent 0, transparent 15px, rgba(255, 215, 0, 0.1) 15px, rgba(255, 215, 0, 0.1) 30px); text-align: center; box-shadow: 0 0 30px rgba(255,215,0,0.2); animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); } /* brighter concentric radar targeting rings */
+.big-emoji { font-size: 60px; margin-bottom: 10px; animation: pulse 2s infinite; filter: drop-shadow(0 0 15px var(--yellow)); }
+.bar-background { width: 100%; height: 35px; border: 4px solid var(--green); background-color: black; margin: 20px 0; overflow: hidden; border-radius: 20px; box-shadow: 0 0 15px rgba(46,204,113,0.3), inset 3px 3px 0px rgba(0,0,0,0.5); }
+.bar-color { height: 100%; width: 0%; background-color: var(--green); border-right: 4px solid black; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); background-image: linear-gradient(45deg, rgba(0,0,0,0.3) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3) 75%, transparent 75%, transparent); background-size: 30px 30px; box-shadow: inset 0 0 10px rgba(255,255,255,0.5); animation: moveStripes 1s linear infinite; } /* added OP moving candy-cane stripes to the progress bar */
 
-  document.getElementById('addItemForm').onsubmit = function(ev) {
-      ev.preventDefault();
-      var btn = document.querySelector(".post-btn");
-      var txt = btn.innerText;
-      btn.innerText = "UPLOADING..."; 
+.btn-retry { font-family: "Orbitron", sans-serif; background-color: black; color: var(--yellow); font-weight: 800; border: 3px solid var(--yellow); padding: 10px 20px; font-size: 1rem; cursor: pointer; box-shadow: 0 0 10px rgba(255,215,0,0.3), 4px 4px 0px var(--yellow); margin-top: 15px; }
+.btn-retry:hover { background-color: var(--yellow); color: black; transform: translate(-3px, -3px) scale(1.05); box-shadow: 0 0 20px var(--green), 8px 8px 0px var(--green); border-color: var(--green); }
+.btn-retry:active { transform: translate(4px, 4px) scale(0.95); box-shadow: 0px 0px 0px var(--yellow); }
 
-      var n = document.getElementById('newItemName').value;
-      var i = document.getElementById('newItemIcon').value;
-      var lst = document.getElementById('newListerName').value;
-      var desc = document.getElementById('newItemDesc').value;
+.board-area { padding: 80px 20px; background-color: #050201; background-image: radial-gradient(rgba(255, 87, 34, 0.2) 2px, transparent 2px), radial-gradient(rgba(255, 87, 34, 0.2) 2px, transparent 2px), radial-gradient(circle at center, rgba(255,87,34,0.05), transparent 80%); background-size: 30px 30px, 30px 30px, 100% 100%; background-position: 0 0, 15px 15px, 0 0; } /* staggered glowing pegboard background extremely loud and popping */
+.sub-text { text-align: center; max-width: 600px; margin: -30px auto 40px auto; font-size: 1.1rem; font-weight: 600; color: #fff; text-shadow: 0 0 5px rgba(255,255,255,0.3); }
 
-      addDoc(collection(database, "listedItems"), {
-          name: n, icon: i, lister: lst, description: desc, status: "available", timestamp: serverTimestamp() 
-      }).then(function(){
-          alert("It's live on the board!");
-          document.getElementById('addItemForm').reset();
-          btn.innerText = txt;
-      }).catch(function(e){
-          console.log(e);
-          alert("network error bro, our school blocklist probably blocked firebase again smh");
-          btn.innerText = txt;
-      });
-  };
-};
+.new-post-box { max-width: 600px; margin: 0 auto 50px auto; background-color: var(--card-dark); padding: 30px; border: 4px solid var(--green); box-shadow: 0 0 20px rgba(46,204,113,0.2), 10px 10px 0px var(--green); }
+.new-post-box h3 { font-family: "Orbitron", sans-serif; margin-bottom: 20px; color: var(--green); text-align: center; font-size: 1.8rem; text-transform: uppercase; text-shadow: 0 0 10px rgba(46,204,113,0.4); }
+.flex-inputs { display: flex; gap: 15px; margin-bottom: 15px; }
+.new-post-box input, .new-post-box select, .new-post-box textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 3px solid var(--green); font-size: 1rem; font-weight: 600; outline: none; font-family: inherit; background: black; color: white; box-shadow: inset 0 0 10px rgba(46,204,113,0.1), 3px 3px 0px rgba(46,204,113,0.2); } 
+.new-post-box input:focus, .new-post-box textarea:focus, .new-post-box select:focus { border-color: var(--yellow); transform: translateX(5px) scale(1.02); box-shadow: 0 0 15px rgba(255,215,0,0.3), -5px 5px 0px var(--yellow); } /* doing the pop out effect again because iter only know one trick */
 
-window.claimIt = function(id) {
-    var un = prompt("♻️ Awesome! Enter your name & class:");
-    if(un == "" || un == null){ return; } 
+.post-btn { font-family: "Orbitron", sans-serif; width: 100%; background-color: var(--green); color: black; font-weight: 800; border: 3px solid black; padding: 15px; font-size: 1.2rem; cursor: pointer; box-shadow: 0 0 15px rgba(46,204,113,0.4), 6px 6px 0px var(--green); margin-top: 10px; animation: glowPulse 3s infinite alternate; }
+.post-btn:hover { background-color: black; color: var(--green); border-color: var(--green); transform: translate(-3px, -3px) scale(1.02); box-shadow: 0 0 25px var(--yellow), 12px 12px 0px var(--yellow); animation: none; }
+.post-btn:active { transform: translate(4px, 4px) scale(0.98); box-shadow: 0px 0px 0px black; }
 
-    var btn = document.getElementById("btn-" + id);
-    if(btn){
-        btn.innerText = "CLAIMED!";
-        btn.style.background = "green";
-        btn.disabled = true;
-    }
+.claimed-box { max-width: 600px; margin: 40px auto; border: 2px solid var(--orange); border-left: 8px solid var(--orange); background: #0a0a0a; background-image: linear-gradient(rgba(255,87,34,0.08) 1px, transparent 1px); background-size: 100% 4px; padding: 25px; box-shadow: 0 0 25px rgba(255,87,34,0.3), inset 0 0 20px rgba(0,0,0,0.8); position: relative; } /* upgraded the diverted items tracker into a highly classified terminal log */
+.claimed-box summary { cursor: pointer; font-family: "Orbitron", sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--orange); list-style: none; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 12px rgba(255,87,34,0.8); }
+.claimed-box summary::-webkit-details-marker { display: none; } /* hides the default ugly arrow take that chrome */
+.claimed-box ul { margin-top: 20px; padding-left: 0; list-style-type: none; border-top: 2px solid rgba(255,87,34,0.5); padding-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.claimed-box li { font-family: monospace; font-size: 1.1rem; margin-bottom: 0; font-weight: 600; background: black; color: #ccc; padding: 15px; border: 1px solid #222; border-left: 4px solid var(--orange); transform: translateX(0); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+.claimed-box li::before { content: '>'; color: var(--green); position: absolute; left: -20px; transition: left 0.3s ease; opacity: 0; font-weight: bold; } /* hidden terminal arrow that slides in */
+.claimed-box li:hover { transform: translateX(15px); border-color: var(--green); border-left-color: var(--green); border-left-width: 6px; color: white; box-shadow: 0 0 15px rgba(46,204,113,0.5); background: #050505; padding-left: 30px; text-shadow: 0 0 8px rgba(46,204,113,0.8); } /* items do a sick hacker slide and glow green like a successful terminal command */
+.claimed-box li:hover::before { left: 10px; opacity: 1; }
 
-    setTimeout(function(){
-        updateDoc(doc(database, "listedItems", id), {
-            status: "claimed",
-            claimedBy: un
-        }).catch(function(e){
-            console.log(e);
-            alert("🚨 ERROR: Couldn't connect to server!");
-            if(btn){
-                btn.innerText = "CLAIM FOR FREE";
-                btn.style.background = "";
-                btn.disabled = false;
-            }
-        });
-    }, 800);
-};
+.item-card { background-color: var(--card-dark); border: 4px solid var(--yellow); padding: 30px; width: 320px; box-shadow: 0 0 15px rgba(255,215,0,0.2), 8px 8px 0px var(--yellow); display: flex; flex-direction: column; animation: fadeInUp 0.5s ease-out, floatInfinite 4.5s ease-in-out infinite alternate; cursor: crosshair; } /* item cards is the goat with anti gravity */
+.item-card:hover { transform: translateY(-12px) rotate(-1deg) scale(1.02); box-shadow: 0 0 30px rgba(255,87,34,0.4), 14px 14px 0px var(--orange); border-color: var(--orange); animation: none; }
+.item-card h3 { font-family: "Orbitron", sans-serif; margin-bottom: 5px; color: var(--yellow); font-size: 1.4rem; text-transform: uppercase; font-weight: 800; text-shadow: 0 0 8px rgba(255,215,0,0.4); }
+.card-icon { font-size: 3.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(255,215,0,0.8)); }
+.lister-name { font-weight: 700; color: var(--orange); margin-bottom: 15px; font-size: 0.95rem; border-bottom: 3px solid var(--orange); padding-bottom: 5px; }
+.item-card p { flex-grow: 1; font-weight: 600; font-size: 1.05rem; color: #eee; }
 
-window.resetQuiz = function() {
-    document.getElementById("footprintForm").reset();
-    document.getElementById("scoreText").innerText = "0";
-    document.getElementById("barFill").style.width = "0%";
-    document.getElementById("resultBox").style.display = "none";
-    document.getElementById("footprintForm").style.display = "block";
-    window.scrollTo(0, document.getElementById('sim').offsetTop);
-};
+.grab-btn { background-color: var(--yellow); color: black; font-weight: 800; border: 3px solid black; padding: 12px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 0 10px rgba(255,215,0,0.4), 4px 4px 0px var(--yellow); margin-top: 20px; text-transform: uppercase; font-family: 'Orbitron', sans-serif; }
+.grab-btn:hover:not(:disabled) { background-color: black; color: var(--yellow); border-color: var(--yellow); transform: translate(-3px, -3px) scale(1.03); box-shadow: 0 0 20px var(--orange), 8px 8px 0px var(--orange); }
+.grab-btn:active:not(:disabled) { transform: translate(4px, 4px) scale(0.95); box-shadow: 0px 0px 0px black; }
+.grab-btn:disabled { background-color: #333; color: #666; box-shadow: none; cursor: not-allowed; transform: none; border-color: #444; }
 
-window.activateWinnerProtocol = function() {
-    document.body.className += " winner-mode";
-    var b = document.createElement('div');
-    b.className = 'victory-banner';
-    b.innerHTML = '<h1 style="font-size: 8rem; color: #ffd700; text-shadow: 10px 10px 0px black;">WINNERS! 🏆</h1>';
-    document.body.appendChild(b);
-    
-    setTimeout(function(){
-        b.remove();
-        document.body.classList.remove('winner-mode');
-    }, 3000);
-    console.log("Judges: 'Wow, such clean code.'");
-};
+/* ANIMATIONS YAY - if the page lags blame the school network not my code */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1) rotate(5deg); } 100% { transform: scale(1); } }
+@keyframes panGrid { 100% { background-position: 40px 40px; } } /* moves the sim diagonal wireframe */
+@keyframes logoShine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } } /* shine animation frames */
+@keyframes moveStripes { 100% { background-position: 30px 0; } } /* makes the progress bar spin basically */
+@keyframes floatInfinite { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } } /* infinite anti-gravity floating loop */
+@keyframes colorShift { 0% { color: var(--green); text-shadow: 0 0 15px var(--green), 2px 2px 0px var(--orange); } 50% { color: var(--yellow); text-shadow: 0 0 15px var(--yellow), 3px 3px 0px var(--green); } 100% { color: var(--green); text-shadow: 0 0 15px var(--green), 2px 2px 0px var(--orange); } } /* RGB gamer text shifting */
+@keyframes glowPulse { 0% { box-shadow: 0 0 10px rgba(46,204,113,0.4), 6px 6px 0px rgba(46,204,113,0.5); } 50% { box-shadow: 0 0 30px rgba(46,204,113,0.9), 6px 6px 0px var(--green); } 100% { box-shadow: 0 0 10px rgba(46,204,113,0.4), 6px 6px 0px rgba(46,204,113,0.5); } } /* neon button pulsing */
+@keyframes glowPulseOrange { 0% { box-shadow: 0 0 10px rgba(255,87,34,0.4), 6px 6px 0px rgba(255,87,34,0.5); } 50% { box-shadow: 0 0 30px rgba(255,87,34,0.9), 6px 6px 0px var(--orange); } 100% { box-shadow: 0 0 10px rgba(255,87,34,0.4), 6px 6px 0px rgba(255,87,34,0.5); } }
+
+footer { background-color: black; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(46, 204, 113, 0.2) 2px, rgba(46, 204, 113, 0.2) 4px); color: white; text-align: center; padding: 60px 20px; font-weight: bold; border-top: 12px solid var(--green); box-shadow: 0 -10px 40px rgba(46,204,113,0.2); } /* hacked in retro scanlines using tiny repeating gradients in neon green - untouched perfection */
+footer h2 { font-family: "Orbitron", sans-serif; color: var(--green); margin-bottom: 15px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(46,204,113,0.8), 3px 3px 0px rgba(46,204,113,0.4); }
+
+@media (max-width: 768px) { .top-nav { flex-direction: column; gap: 15px; padding: 20px; } .banner h1 { font-size: 2.5rem; } .stats-banner { position: relative; bottom: auto; right: auto; width: 90%; margin: 20px auto 40px auto; animation: none; box-shadow: 0 0 20px rgba(46,204,113,0.4); } .info-box, .item-card { width: 100%; max-width: 400px; animation: none; } .flex-inputs { flex-direction: column; gap: 0; } .sim-area, .board-area, .threats-wrapper { padding: 40px 15px; } } /* mobile view so the judges dont complain so iter had to hardcode this do not touch. disabled anti-gravity on mobile so phones dont explode */
+
+/* THE WINNER PROTOCOL CSS - UPGRADED TO GOD-TIER */
+.winner-mode { animation: hackerRainbow 3s linear infinite !important; } /* Turns the entire website into an infinite RGB gaming keyboard */
+@keyframes hackerRainbow { 0% { filter: hue-rotate(0deg) saturate(2.5) contrast(1.2); } 100% { filter: hue-rotate(360deg) saturate(2.5) contrast(1.2); } }
+
+.victory-banner { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999; display: flex; justify-content: center; align-items: center; pointer-events: none; overflow: hidden; background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%); } /* The massive overlay container */
+.victory-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: repeating-conic-gradient(from 0deg, var(--green) 0deg 10deg, transparent 10deg 20deg, var(--yellow) 20deg 30deg, transparent 30deg 40deg); opacity: 0.2; animation: spinSiren 10s linear infinite; z-index: -1; } /* Insane spinning holographic siren effect */
+.victory-banner::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 120px var(--yellow), inset 0 0 60px var(--orange); animation: flashWarning 0.5s infinite alternate; z-index: -1; } /* Violent pulsing radioactive border warning */
+
+@keyframes spinSiren { 100% { transform: rotate(360deg); } }
+@keyframes flashWarning { 0% { opacity: 0.5; } 100% { opacity: 1; } }
