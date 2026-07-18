@@ -1,5 +1,5 @@
-/* --- ECOFOOTPRINT: SYSTEM ARCHITECTURE --- */
-/* DEVS: KUNAL & MEENAKSHI | WEBATHON 2026 | POWERED BY CAFFEINE */
+/* --- ECOFOOTPRINT: MASTER STYLE SHEET (PRODUCTION READY) --- */
+/* DEVS: KUNAL & MEENAKSHI | WEBATHON 2026 | OPTIMIZED FOR READABILITY */
 
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap");
 
@@ -13,7 +13,6 @@
     --spacing-lg: 120px;
 }
 
-/* i watched a 10min youtube video on 2x speed for these css variables, pls dont delete or the universe collapses */
 * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
 body { 
@@ -78,11 +77,21 @@ body {
 }
 .info-box:hover { transform: translateY(-15px); }
 
-/* --- QUIZ & BOARD --- */
-.quiz-box, .new-post-box { 
+/* --- QUIZ & BOARD (OPTIMIZED FOR BREATHING ROOM) --- */
+.quiz-box { 
+    max-width: 700px; margin: 0 auto; background: white; 
+    padding: 80px; /* Increased padding to stop congestion */
+    border: var(--border-thick); box-shadow: var(--shadow);
+}
+
+.new-post-box { 
     max-width: 700px; margin: 0 auto; background: white; 
     padding: 60px; border: var(--border-thick); box-shadow: var(--shadow);
 }
+
+.q-wrap { margin-bottom: 40px; } /* Added spacing between form questions */
+.q-wrap label { font-size: 1.3rem; font-weight: 800; margin-bottom: 15px; display: block; }
+.q-wrap select { width: 100%; padding: 18px; font-size: 1.1rem; border: 3px solid black; }
 
 .submit-button, .post-btn { 
     width: 100%; background: var(--green); border: var(--border-thick); 
