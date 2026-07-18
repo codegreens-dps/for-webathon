@@ -60,13 +60,3 @@ window.claimIt = function(itemId) { /*putting this on window so the inline html 
 };
 
 window.resetQuiz = () => { /*resetting the quiz index guess*/ document.getElementById("footprintForm").reset(); document.getElementById("scoreText").innerText = "0"; document.getElementById("barFill").style.width = "0%"; document.getElementById("resultBox").style.display = "none"; /*swap the display boxes back so its not weird*/ document.getElementById("footprintForm").style.display = "block"; window.scrollTo(0, document.getElementById('sim').offsetTop); /*scroll them back up so they arent staring at the bottom of the page confued*/ };
-
-document.getElementById('wardrobeForm').addEventListener('submit', async(event) => { /*new circular wardrobe engine for the judges to see our local impact in delhi*/
-    event.preventDefault(); let wBtn = document.querySelector("#wardrobeForm .post-btn"); let oldTxt = wBtn.innerText; wBtn.innerText = "DIGITIZING..."; /*makes it look like complex ai is thinking*/
-    let wItem = document.getElementById('wardrobeItem').value; let wAction = document.getElementById('wardrobeAction').value;
-    
-    addDoc(collection(db, "wardrobeLog"), { item: wItem, action: wAction, location: "Delhi/NCR", timestamp: serverTimestamp() }).then(() => { /*saving to cloud so we can say it is a data driven platform*/
-        wBtn.innerText = oldTxt; document.getElementById('wardrobeForm').reset();
-        if(wAction === "diy") { alert("🧵 Upcycle Idea: Turn your '" + wItem + "' into a sick patchwork tote bag or shorts! (Search YouTube for easy no-sew tutorials)"); } else { alert("📍 Match Found! Connected you with 'Stitch & Fix Tailors' in Connaught Place, New Delhi to repair your '" + wItem + "'. Check your email!"); }
-    }).catch((err) => { console.log(err); alert("database error! the school firewall strikes again."); wBtn.innerText = oldTxt; });
-});
