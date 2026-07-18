@@ -1,127 +1,736 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap"); /*arial is for boomers so we are using this sick techy font iter found on stckoverflow*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&display=swap"); 
+/* arial is for boomers so we are using this sick techy font iter found on stackoverflow */
 
-:root { --green: #2ecc71; --bg-cream: #f4f1ea; --orange: #ff5722; --yellow: #ffd700; --border-thick: 4px solid black; --shadow-size: 8px; } /*css variables iter watched a 10 minute video on 2x speed for this the webathon judges better cry when they see this advanced css*/
+:root { 
+  --green: #2ecc71; 
+  --bg-cream: #f4f1ea; 
+  --orange: #ff5722; 
+  --yellow: #ffd700; 
+  --border-thick: 4px solid black; 
+  --shadow-size: 8px; 
+} 
+/* css variables iter watched a 10 minute video on 2x speed for this the webathon judges better cry when they see this advanced css */
 
-* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); } /*reset everything because html is naturally ugly upgraded to cubic-bezier for buttery smooth OP physics*/
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); 
+} 
+/* reset everything because html is naturally ugly upgraded to cubic-bezier for buttery smooth OP physics */
 
-body { font-family: "Space Grotesk", sans-serif; background-color: var(--bg-cream); color: black; overflow-x: hidden; cursor: crosshair; background-image: linear-gradient(rgba(0, 0, 0, 0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 2px, transparent 2px); background-size: 40px 40px; animation: panGrid 4s linear infinite; } /*hides the side scrollbar plus this animated blueprint grid background is pure techy neo-brutalism the judges will weep*/
+body { 
+  font-family: "Space Grotesk", sans-serif; 
+  background-color: var(--bg-cream); 
+  color: black; 
+  overflow-x: hidden; 
+  cursor: crosshair; 
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.05) 2px, transparent 2px), 
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 2px, transparent 2px); 
+  background-size: 40px 40px; 
+  animation: panGrid 4s linear infinite; 
+} 
+/* hides the side scrollbar plus this animated blueprint grid background is pure techy neo-brutalism */
 
-::selection { background-color: var(--green); color: black; text-shadow: 1px 1px 0px white; } /*custom highlight color so when the teacher grades it it looks expensive*/
+::selection { 
+  background-color: var(--green); 
+  color: black; 
+  text-shadow: 1px 1px 0px white; 
+} 
+/* custom highlight color so when the teacher grades it it looks expensive */
 
-::-webkit-scrollbar { width: 14px; } /*custom scrollbar justvibes*/
-::-webkit-scrollbar-track { background: var(--bg-cream); border-left: 3px solid black; }
-::-webkit-scrollbar-thumb { background: var(--green); border: 3px solid black; }
-::-webkit-scrollbar-thumb:hover { background: black; border-color: var(--green); }
+::-webkit-scrollbar { 
+  width: 14px; 
+} 
+/* custom scrollbar just vibes */
 
-.top-nav { background-color: rgba(255, 255, 255, 0.9); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); border-bottom: var(--border-thick); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 99999; } /*top nav added a blur effect so it looks like glass when scrolling please dont touch the final index iter just kept hitting 9 until it stayed on top*/
+::-webkit-scrollbar-track { 
+  background: var(--bg-cream); 
+  border-left: 3px solid black; 
+}
 
-.site-logo { font-size: 24px; font-weight: 800; color: var(--green); text-transform: uppercase; letter-spacing: -1px; text-shadow: 2px 2px 0px black; position: relative; overflow: hidden; display: inline-block; padding-right: 10px; animation: colorShift 4s infinite alternate; } /*text shadow makes it 3d pure css no photoshop we ar designers now with full RGB gamer shifts*/
-.site-logo::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent); transform: skewX(-20deg); animation: logoShine 3s infinite; } /*OP shine effect sliding across the logo*/
+::-webkit-scrollbar-thumb { 
+  background: var(--green); 
+  border: 3px solid black; 
+}
 
-.top-nav nav a { color: black; text-decoration: none; font-weight: 700; margin-left: 20px; cursor: pointer; display: inline-block; }
-.top-nav nav a:hover { color: var(--green); border-bottom: 3px solid var(--green); transform: translateY(-3px) scale(1.05); } /*the little jump effect literally spent 43 minutes on this one line now it scales too*/
+::-webkit-scrollbar-thumb:hover { 
+  background: black; 
+  border-color: var(--green); 
+}
 
-.banner { background-color: var(--green); color: black; text-align: center; padding: 80px 20px; border-bottom: 8px solid black; } /*hero banner area if u make the padding smaller it looks squished plsdont do it*/
-.banner h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 5px 5px 0px white; animation: fadeInUp 0.8s ease-out, floatInfinite 5s ease-in-out infinite alternate; letter-spacing: -2px; } /*heading floats now too*/
-.banner p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; font-weight: 600; text-shadow: 1px 1px 0px white; }
+.top-nav { 
+  background-color: rgba(255, 255, 255, 0.9); 
+  -webkit-backdrop-filter: blur(5px); 
+  backdrop-filter: blur(5px); 
+  border-bottom: var(--border-thick); 
+  padding: 15px 30px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  position: sticky; 
+  top: 0; 
+  z-index: 99999; 
+} 
+/* top nav added a blur effect so it looks like glass when scrolling please dont touch the final index iter just kept hitting 9 until it stayed on top */
 
-.big-btn { display: inline-block; background-color: white; color: black; padding: 15px 30px; font-size: 1.2rem; font-weight: 800; text-decoration: none; border: var(--border-thick); box-shadow: 6px 6px 0px black; cursor: pointer; animation: glowPulse 2s infinite alternate; } /*big chunky button giving very muchvibesthe judges would love that plus infinite glow*/
-.big-btn:hover { background-color: black; color: var(--green); transform: translate(-3px, -3px) scale(1.02); box-shadow: 12px 12px 0px var(--green); animation: none; }
-.big-btn:active { transform: translate(4px, 4px) scale(0.98); box-shadow: 0px 0px 0px black; } /*satisfying click physics doing this instead of my actual homework*/
+.site-logo { 
+  font-size: 24px; 
+  font-weight: 800; 
+  color: var(--green); 
+  text-transform: uppercase; 
+  letter-spacing: -1px; 
+  text-shadow: 2px 2px 0px black; 
+  position: relative; 
+  overflow: hidden; 
+  display: inline-block; 
+  padding-right: 10px; 
+  animation: colorShift 4s infinite alternate; 
+} 
+/* text shadow makes it 3d pure css no photoshop we are designers now with full RGB gamer shifts */
 
-.threats-wrapper { padding: 80px 20px; background-color: transparent; } /*threats section*/
-.main-heading { text-align: center; font-size: 2.8rem; margin-bottom: 50px; text-decoration: underline; text-decoration-thickness: 6px; text-decoration-color: var(--green); text-underline-offset: 8px; text-shadow: 2px 2px 0px white; letter-spacing: -1px; transition: transform 0.3s ease; } /*no underline is just emptyish*/
-.main-heading:hover { transform: scale(1.05) rotate(-1deg); } /*headings jump when you mouse over them because we are extra*/
+.site-logo::after { 
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: -100%; 
+  width: 50%; 
+  height: 100%; 
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent); 
+  transform: skewX(-20deg); 
+  animation: logoShine 3s infinite; 
+} 
+/* OP shine effect sliding across the logo */
 
-.flex-boxes { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; } /*idk what im doing from stackoverlow   */
-.info-box { background-color: white; border: var(--border-thick); padding: 30px; width: 320px; text-align: center; box-shadow: 8px 8px 0px black; cursor: crosshair; animation: floatInfinite 4s ease-in-out infinite alternate; } /*boxes literally floating in anti-gravity*/
-.info-box:hover { transform: translateY(-12px) rotate(2deg) scale(1.02); box-shadow: 14px 14px 0px var(--green); border-color: var(--green); animation: none; } /*it rotates 2 degrees if you make it 3 degrees it makes me nauseous so leave it at 2*/
-.info-box h3 { margin-bottom: 15px; color: black; font-size: 1.5rem; text-transform: uppercase; font-weight: 800; }
-.box-emoji { font-size: 3.5rem; margin-bottom: 15px; display: inline-block; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2)); }
-.info-box:hover .box-emoji { animation: pulse 1s infinite; transform: scale(1.2); } /*little easter egg css pulse animation goes brrrrr*/
+.top-nav nav a { 
+  color: black; 
+  text-decoration: none; 
+  font-weight: 700; 
+  margin-left: 20px; 
+  cursor: pointer; 
+  display: inline-block; 
+}
 
-.sim-area { padding: 80px 20px; border-top: 8px solid black; border-bottom: 8px solid black; background-color: var(--green); } /*chose this green background but now hate it but its too late to change and debug*/
-.sim-area .main-heading { color: white; text-decoration-color: black; text-shadow: 3px 3px 0px black; }
-.quiz-box { max-width: 600px; margin: 0 auto; background-color: white; padding: 40px; border: var(--border-thick); box-shadow: 10px 10px 0px black; }
-.q-wrap { margin-bottom: 25px; }
-.q-wrap label { font-weight: 800; font-size: 1.1rem; display: block; margin-bottom: 8px; }
+.top-nav nav a:hover { 
+  color: var(--green); 
+  border-bottom: 3px solid var(--green); 
+  transform: translateY(-3px) scale(1.05); 
+} 
+/* the little jump effect literally spent 43 minutes on this one line now it scales too */
 
-.q-wrap select { width: 100%; padding: 15px; margin-top: 5px; border: 3px solid black; font-size: 1rem; cursor: pointer; background: white; font-weight: 600; outline: none; font-family: "Space Grotesk", sans-serif; border-radius: 0; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); } /*hiding the ugly default dropdown arrows was too hard so iter just made the box fat*/
-.q-wrap select:focus { background-color: var(--bg-cream); border-color: var(--orange); box-shadow: -4px 4px 0px var(--orange); transform: translateX(5px); } /*inputs now pop out when you click them*/
+.banner { 
+  background-color: var(--green); 
+  color: black; 
+  text-align: center; 
+  padding: 80px 20px; 
+  border-bottom: 8px solid black; 
+} 
+/* hero banner area if u make the padding smaller it looks squished pls dont do it */
 
-.submit-button { width: 100%; background-color: var(--green); color: black; font-size: 1.2rem; font-weight: 800; padding: 15px; border: var(--border-thick); box-shadow: 6px 6px 0px black; cursor: pointer; margin-top: 20px; text-transform: uppercase; animation: glowPulse 2.5s infinite alternate; }
-.submit-button:hover { background-color: black; color: var(--green); transform: translate(-3px, -3px) scale(1.02); box-shadow: 12px 12px 0px var(--green); animation: none; }
-.submit-button:active { transform: translate(4px, 4px) scale(0.98); box-shadow: 0px 0px 0px black; }
+.banner h1 { 
+  font-size: 4rem; 
+  margin-bottom: 20px; 
+  text-shadow: 5px 5px 0px white; 
+  animation: fadeInUp 0.8s ease-out, floatInfinite 5s ease-in-out infinite alternate; 
+  letter-spacing: -2px; 
+} 
+/* heading floats now too */
 
-.end-screen { margin-top: 30px; padding: 30px; border: var(--border-thick); background-color: var(--yellow); text-align: center; animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); } /*wait why is this yellow whatever iter dont have time to fix it*/
-.big-emoji { font-size: 60px; margin-bottom: 10px; animation: pulse 2s infinite; }
-.bar-background { width: 100%; height: 35px; border: 4px solid black; background-color: white; margin: 20px 0; overflow: hidden; border-radius: 20px; box-shadow: inset 3px 3px 0px rgba(0,0,0,0.1); }
-.bar-color { height: 100%; width: 0%; background-color: var(--green); border-right: 4px solid black; transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); background-image: linear-gradient(45deg, rgba(255,255,255,0.3) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.3) 75%, transparent 75%, transparent); background-size: 30px 30px; animation: moveStripes 1s linear infinite; } /*added OP moving candy-cane stripes to the progress bar*/
+.banner p { 
+  font-size: 1.2rem; 
+  max-width: 700px; 
+  margin: 0 auto 30px auto; 
+  font-weight: 600; 
+  text-shadow: 1px 1px 0px white; 
+}
 
-.btn-retry { background-color: white; color: black; font-weight: 800; border: 3px solid black; padding: 10px 20px; font-size: 1rem; cursor: pointer; box-shadow: 4px 4px 0px black; margin-top: 15px; }
-.btn-retry:hover { background-color: black; color: white; transform: translate(-3px, -3px) scale(1.05); box-shadow: 8px 8px 0px white; }
-.btn-retry:active { transform: translate(4px, 4px) scale(0.95); box-shadow: 0px 0px 0px black; }
+.big-btn { 
+  display: inline-block; 
+  background-color: white; 
+  color: black; 
+  padding: 15px 30px; 
+  font-size: 1.2rem; 
+  font-weight: 800; 
+  text-decoration: none; 
+  border: var(--border-thick); 
+  box-shadow: 6px 6px 0px black; 
+  cursor: pointer; 
+  animation: glowPulse 2s infinite alternate; 
+} 
+/* big chunky button giving very much vibes the judges would love that plus infinite glow */
 
-.board-area { padding: 80px 20px; background-color: transparent; } /*if this breaks during the demo iter am cooked*/
-.sub-text { text-align: center; max-width: 600px; margin: -30px auto 40px auto; font-size: 1.1rem; font-weight: 600; text-shadow: 1px 1px 0px white; }
+.big-btn:hover { 
+  background-color: black; 
+  color: var(--green); 
+  transform: translate(-3px, -3px) scale(1.02); 
+  box-shadow: 12px 12px 0px var(--green); 
+  animation: none; 
+}
 
-.new-post-box { max-width: 600px; margin: 0 auto 50px auto; background-color: white; padding: 30px; border: var(--border-thick); box-shadow: 10px 10px 0px black; }
-.new-post-box h3 { margin-bottom: 20px; color: black; text-align: center; font-size: 1.8rem; text-transform: uppercase; }
-.flex-inputs { display: flex; gap: 15px; margin-bottom: 15px; }
-.new-post-box input, .new-post-box select, .new-post-box textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 3px solid black; font-size: 1rem; font-weight: 600; outline: none; font-family: 'Space Grotesk', sans-serif; box-shadow: 3px 3px 0px rgba(0,0,0,0.05); }
-.new-post-box input:focus, .new-post-box textarea:focus, .new-post-box select:focus { border-color: var(--orange); transform: translateX(5px) scale(1.02); box-shadow: -5px 5px 0px var(--orange); } /*doing the pop out effect again because iter only know one trick*/
+.big-btn:active { 
+  transform: translate(4px, 4px) scale(0.98); 
+  box-shadow: 0px 0px 0px black; 
+} 
+/* satisfying click physics doing this instead of my actual homework */
 
-.post-btn { width: 100%; background-color: var(--orange); color: black; font-weight: 800; border: 3px solid black; padding: 15px; font-size: 1.2rem; cursor: pointer; box-shadow: 6px 6px 0px black; margin-top: 10px; animation: glowPulse 3s infinite alternate; }
-.post-btn:hover { background-color: black; color: var(--orange); transform: translate(-3px, -3px) scale(1.02); box-shadow: 12px 12px 0px var(--orange); animation: none; }
-.post-btn:active { transform: translate(4px, 4px) scale(0.98); box-shadow: 0px 0px 0px black; }
+.threats-wrapper { 
+  padding: 80px 20px; 
+  background-color: transparent; 
+} 
+/* threats section */
 
-.claimed-box { max-width: 600px; margin: 40px auto; border: var(--border-thick); background: var(--bg-cream); padding: 20px; box-shadow: 6px 6px 0px rgba(0,0,0,0.2); } /*the new claimed items tracker   */
-.claimed-box summary { cursor: pointer; font-weight: 800; font-size: 1.3rem; color: black; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-.claimed-box summary::-webkit-details-marker { display: none; } /*hides th e default ugly arrow take that chrome*/
-.claimed-box ul { margin-top: 15px; padding-left: 0; list-style-type: none; border-top: 3px dashed var(--green); padding-top: 15px; }
-.claimed-box li { margin-bottom: 10px; font-weight: 600; background: white; padding: 12px; border: 3px solid black; transform: translateX(0); transition: transform 0.2s; }
-.claimed-box li:hover { transform: translateX(10px); border-color: var(--green); } /*items slide over slightly when hovered in history*/
+.main-heading { 
+  text-align: center; 
+  font-size: 2.8rem; 
+  margin-bottom: 50px; 
+  text-decoration: underline; 
+  text-decoration-thickness: 6px; 
+  text-decoration-color: var(--green); 
+  text-underline-offset: 8px; 
+  text-shadow: 2px 2px 0px white; 
+  letter-spacing: -1px; 
+  transition: transform 0.3s ease; 
+} 
+/* no underline is just emptyish */
 
-.item-card { background-color: white; border: var(--border-thick); padding: 30px; width: 320px; box-shadow: 8px 8px 0px var(--yellow); display: flex; flex-direction: column; animation: fadeInUp 0.5s ease-out, floatInfinite 4.5s ease-in-out infinite alternate; cursor: crosshair; } /*item cards is the goat with anti gravity*/
-.item-card:hover { transform: translateY(-12px) rotate(-1deg) scale(1.02); box-shadow: 14px 14px 0px var(--yellow); border-color: var(--orange); animation: none; }
-.item-card h3 { margin-bottom: 5px; color: black; font-size: 1.4rem; text-transform: uppercase; font-weight: 800; }
-.card-icon { font-size: 3.5rem; margin-bottom: 10px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2)); }
-.lister-name { font-weight: 700; color: var(--orange); margin-bottom: 15px; font-size: 0.95rem; border-bottom: 3px solid black; padding-bottom: 5px; }
-.item-card p { flex-grow: 1; font-weight: 600; font-size: 1.05rem; }
+.main-heading:hover { 
+  transform: scale(1.05) rotate(-1deg); 
+} 
+/* headings jump when you mouse over them because we are extra */
 
-.grab-btn { background-color: var(--yellow); color: black; font-weight: 800; border: 3px solid black; padding: 12px; font-size: 1.1rem; cursor: pointer; box-shadow: 4px 4px 0px black; margin-top: 20px; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; }
-.grab-btn:hover:not(:disabled) { background-color: black; color: var(--yellow); transform: translate(-3px, -3px) scale(1.03); box-shadow: 8px 8px 0px var(--yellow); }
-.grab-btn:active:not(:disabled) { transform: translate(4px, 4px) scale(0.95); box-shadow: 0px 0px 0px black; }
-.grab-btn:disabled { background-color: #ccc; color: #666; box-shadow: none; cursor: not-allowed; transform: none; border-color: #999; }
+.flex-boxes { 
+  display: flex; 
+  justify-content: center; 
+  gap: 30px; 
+  flex-wrap: wrap; 
+} 
+/* idk what im doing from stackoverlow */
 
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } } /*animations yay if the page lags blame the school network not my code*/
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1) rotate(5deg); } 100% { transform: scale(1); } }
-@keyframes panGrid { 0% { background-position: 0 0; } 100% { background-position: 40px 40px; } } /*magic infinite scrolling grid math*/
-@keyframes logoShine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } } /*shine animation frames*/
-@keyframes moveStripes { 100% { background-position: 30px 0; } } /*makes the progress bar spin basically*/
-@keyframes floatInfinite { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } } /*infinite anti-gravity floating loop*/
-@keyframes colorShift { 0% { color: var(--green); text-shadow: 2px 2px 0px black; } 50% { color: var(--yellow); text-shadow: 3px 3px 0px var(--orange); } 100% { color: var(--green); text-shadow: 2px 2px 0px black; } } /*RGB gamer text shifting*/
-@keyframes glowPulse { 0% { box-shadow: 6px 6px 0px black; } 50% { box-shadow: 6px 6px 20px rgba(0,0,0,0.5), 6px 6px 0px black; } 100% { box-shadow: 6px 6px 0px black; } } /*radioactive button pulsing*/
+.info-box { 
+  background-color: white; 
+  border: var(--border-thick); 
+  padding: 30px; 
+  width: 320px; 
+  text-align: center; 
+  box-shadow: 8px 8px 0px black; 
+  cursor: crosshair; 
+  animation: floatInfinite 4s ease-in-out infinite alternate; 
+} 
+/* boxes literally floating in anti-gravity */
 
-footer { background-color: black; color: white; text-align: center; padding: 60px 20px; font-weight: bold; border-top: 12px solid var(--green); } /*footer so big it looks like we have more content than we actually do*/
-footer h2 { color: var(--green); margin-bottom: 15px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 3px 3px 0px rgba(255,255,255,0.2); }
+.info-box:hover { 
+  transform: translateY(-12px) rotate(2deg) scale(1.02); 
+  box-shadow: 14px 14px 0px var(--green); 
+  border-color: var(--green); 
+  animation: none; 
+} 
+/* it rotates 2 degrees if you make it 3 degrees it makes me nauseous so leave it at 2 */
 
-@media (max-width: 768px) { .top-nav { flex-direction: column; gap: 15px; padding: 20px; } .banner h1 { font-size: 2.5rem; } .info-box, .item-card { width: 100%; max-width: 400px; animation: none; } .flex-inputs { flex-direction: column; gap: 0; } .sim-area, .board-area, .threats-wrapper { padding: 40px 15px; } } /*mobile view so the judges dont complain so iter had to hardcode this do not touch. disabled anti-gravity on mobile so phones dont explode*/
+.info-box h3 { 
+  margin-bottom: 15px; 
+  color: black; 
+  font-size: 1.5rem; 
+  text-transform: uppercase; 
+  font-weight: 800; 
+}
+
+.box-emoji { 
+  font-size: 3.5rem; 
+  margin-bottom: 15px; 
+  display: inline-block; 
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2)); 
+}
+
+.info-box:hover .box-emoji { 
+  animation: pulse 1s infinite; 
+  transform: scale(1.2); 
+} 
+/* little easter egg css pulse animation goes brrrrr */
+
+.sim-area { 
+  padding: 80px 20px; 
+  border-top: 8px solid black; 
+  border-bottom: 8px solid black; 
+  background-color: var(--green); 
+} 
+/* chose this green background but now hate it but its too late to change and debug */
+
+.sim-area .main-heading { 
+  color: white; 
+  text-decoration-color: black; 
+  text-shadow: 3px 3px 0px black; 
+}
+
+.quiz-box { 
+  max-width: 600px; 
+  margin: 0 auto; 
+  background-color: white; 
+  padding: 40px; 
+  border: var(--border-thick); 
+  box-shadow: 10px 10px 0px black; 
+}
+
+.q-wrap { 
+  margin-bottom: 25px; 
+}
+
+.q-wrap label { 
+  font-weight: 800; 
+  font-size: 1.1rem; 
+  display: block; 
+  margin-bottom: 8px; 
+}
+
+.q-wrap select { 
+  width: 100%; 
+  padding: 15px; 
+  margin-top: 5px; 
+  border: 3px solid black; 
+  font-size: 1rem; 
+  cursor: pointer; 
+  background: white; 
+  font-weight: 600; 
+  outline: none; 
+  font-family: "Space Grotesk", sans-serif; 
+  border-radius: 0; 
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.1); 
+} 
+/* hiding the ugly default dropdown arrows was too hard so iter just made the box fat */
+
+.q-wrap select:focus { 
+  background-color: var(--bg-cream); 
+  border-color: var(--orange); 
+  box-shadow: -4px 4px 0px var(--orange); 
+  transform: translateX(5px); 
+} 
+/* inputs now pop out when you click them */
+
+.submit-button { 
+  width: 100%; 
+  background-color: var(--green); 
+  color: black; 
+  font-size: 1.2rem; 
+  font-weight: 800; 
+  padding: 15px; 
+  border: var(--border-thick); 
+  box-shadow: 6px 6px 0px black; 
+  cursor: pointer; 
+  margin-top: 20px; 
+  text-transform: uppercase; 
+  animation: glowPulse 2.5s infinite alternate; 
+}
+
+.submit-button:hover { 
+  background-color: black; 
+  color: var(--green); 
+  transform: translate(-3px, -3px) scale(1.02); 
+  box-shadow: 12px 12px 0px var(--green); 
+  animation: none; 
+}
+
+.submit-button:active { 
+  transform: translate(4px, 4px) scale(0.98); 
+  box-shadow: 0px 0px 0px black; 
+}
+
+.end-screen { 
+  margin-top: 30px; 
+  padding: 30px; 
+  border: var(--border-thick); 
+  background-color: var(--yellow); 
+  text-align: center; 
+  animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+} 
+/* wait why is this yellow whatever iter dont have time to fix it */
+
+.big-emoji { 
+  font-size: 60px; 
+  margin-bottom: 10px; 
+  animation: pulse 2s infinite; 
+}
+
+.bar-background { 
+  width: 100%; 
+  height: 35px; 
+  border: 4px solid black; 
+  background-color: white; 
+  margin: 20px 0; 
+  overflow: hidden; 
+  border-radius: 20px; 
+  box-shadow: inset 3px 3px 0px rgba(0,0,0,0.1); 
+}
+
+.bar-color { 
+  height: 100%; 
+  width: 0%; 
+  background-color: var(--green); 
+  border-right: 4px solid black; 
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); 
+  background-image: 
+    linear-gradient(45deg, rgba(255,255,255,0.3) 25%, transparent 25%, 
+    transparent 50%, rgba(255,255,255,0.3) 50%, 
+    rgba(255,255,255,0.3) 75%, transparent 75%, transparent); 
+  background-size: 30px 30px; 
+  animation: moveStripes 1s linear infinite; 
+} 
+/* added OP moving candy-cane stripes to the progress bar */
+
+.btn-retry { 
+  background-color: white; 
+  color: black; 
+  font-weight: 800; 
+  border: 3px solid black; 
+  padding: 10px 20px; 
+  font-size: 1rem; 
+  cursor: pointer; 
+  box-shadow: 4px 4px 0px black; 
+  margin-top: 15px; 
+}
+
+.btn-retry:hover { 
+  background-color: black; 
+  color: white; 
+  transform: translate(-3px, -3px) scale(1.05); 
+  box-shadow: 8px 8px 0px white; 
+}
+
+.btn-retry:active { 
+  transform: translate(4px, 4px) scale(0.95); 
+  box-shadow: 0px 0px 0px black; 
+}
+
+.board-area { 
+  padding: 80px 20px; 
+  background-color: transparent; 
+} 
+/* if this breaks during the demo iter am cooked */
+
+.sub-text { 
+  text-align: center; 
+  max-width: 600px; 
+  margin: -30px auto 40px auto; 
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  text-shadow: 1px 1px 0px white; 
+}
+
+.new-post-box { 
+  max-width: 600px; 
+  margin: 0 auto 50px auto; 
+  background-color: white; 
+  padding: 30px; 
+  border: var(--border-thick); 
+  box-shadow: 10px 10px 0px black; 
+}
+
+.new-post-box h3 { 
+  margin-bottom: 20px; 
+  color: black; 
+  text-align: center; 
+  font-size: 1.8rem; 
+  text-transform: uppercase; 
+}
+
+.flex-inputs { 
+  display: flex; 
+  gap: 15px; 
+  margin-bottom: 15px; 
+}
+
+.new-post-box input, 
+.new-post-box select, 
+.new-post-box textarea { 
+  width: 100%; 
+  padding: 12px; 
+  margin-bottom: 15px; 
+  border: 3px solid black; 
+  font-size: 1rem; 
+  font-weight: 600; 
+  outline: none; 
+  font-family: 'Space Grotesk', sans-serif; 
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.05); 
+}
+
+.new-post-box input:focus, 
+.new-post-box textarea:focus, 
+.new-post-box select:focus { 
+  border-color: var(--orange); 
+  transform: translateX(5px) scale(1.02); 
+  box-shadow: -5px 5px 0px var(--orange); 
+} 
+/* doing the pop out effect again because iter only know one trick */
+
+.post-btn { 
+  width: 100%; 
+  background-color: var(--orange); 
+  color: black; 
+  font-weight: 800; 
+  border: 3px solid black; 
+  padding: 15px; 
+  font-size: 1.2rem; 
+  cursor: pointer; 
+  box-shadow: 6px 6px 0px black; 
+  margin-top: 10px; 
+  animation: glowPulse 3s infinite alternate; 
+}
+
+.post-btn:hover { 
+  background-color: black; 
+  color: var(--orange); 
+  transform: translate(-3px, -3px) scale(1.02); 
+  box-shadow: 12px 12px 0px var(--orange); 
+  animation: none; 
+}
+
+.post-btn:active { 
+  transform: translate(4px, 4px) scale(0.98); 
+  box-shadow: 0px 0px 0px black; 
+}
+
+.claimed-box { 
+  max-width: 600px; 
+  margin: 40px auto; 
+  border: var(--border-thick); 
+  background: var(--bg-cream); 
+  padding: 20px; 
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.2); 
+} 
+/* the new claimed items tracker */
+
+.claimed-box summary { 
+  cursor: pointer; 
+  font-weight: 800; 
+  font-size: 1.3rem; 
+  color: black; 
+  list-style: none; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.claimed-box summary::-webkit-details-marker { 
+  display: none; 
+} 
+/* hides the default ugly arrow take that chrome */
+
+.claimed-box ul { 
+  margin-top: 15px; 
+  padding-left: 0; 
+  list-style-type: none; 
+  border-top: 3px dashed var(--green); 
+  padding-top: 15px; 
+}
+
+.claimed-box li { 
+  margin-bottom: 10px; 
+  font-weight: 600; 
+  background: white; 
+  padding: 12px; 
+  border: 3px solid black; 
+  transform: translateX(0); 
+  transition: transform 0.2s; 
+}
+
+.claimed-box li:hover { 
+  transform: translateX(10px); 
+  border-color: var(--green); 
+} 
+/* items slide over slightly when hovered in history */
+
+.item-card { 
+  background-color: white; 
+  border: var(--border-thick); 
+  padding: 30px; 
+  width: 320px; 
+  box-shadow: 8px 8px 0px var(--yellow); 
+  display: flex; 
+  flex-direction: column; 
+  animation: fadeInUp 0.5s ease-out, floatInfinite 4.5s ease-in-out infinite alternate; 
+  cursor: crosshair; 
+} 
+/* item cards is the goat with anti gravity */
+
+.item-card:hover { 
+  transform: translateY(-12px) rotate(-1deg) scale(1.02); 
+  box-shadow: 14px 14px 0px var(--yellow); 
+  border-color: var(--orange); 
+  animation: none; 
+}
+
+.item-card h3 { 
+  margin-bottom: 5px; 
+  color: black; 
+  font-size: 1.4rem; 
+  text-transform: uppercase; 
+  font-weight: 800; 
+}
+
+.card-icon { 
+  font-size: 3.5rem; 
+  margin-bottom: 10px; 
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2)); 
+}
+
+.lister-name { 
+  font-weight: 700; 
+  color: var(--orange); 
+  margin-bottom: 15px; 
+  font-size: 0.95rem; 
+  border-bottom: 3px solid black; 
+  padding-bottom: 5px; 
+}
+
+.item-card p { 
+  flex-grow: 1; 
+  font-weight: 600; 
+  font-size: 1.05rem; 
+}
+
+.grab-btn { 
+  background-color: var(--yellow); 
+  color: black; 
+  font-weight: 800; 
+  border: 3px solid black; 
+  padding: 12px; 
+  font-size: 1.1rem; 
+  cursor: pointer; 
+  box-shadow: 4px 4px 0px black; 
+  margin-top: 20px; 
+  text-transform: uppercase; 
+  font-family: 'Space Grotesk', sans-serif; 
+}
+
+.grab-btn:hover:not(:disabled) { 
+  background-color: black; 
+  color: var(--yellow); 
+  transform: translate(-3px, -3px) scale(1.03); 
+  box-shadow: 8px 8px 0px var(--yellow); 
+}
+
+.grab-btn:active:not(:disabled) { 
+  transform: translate(4px, 4px) scale(0.95); 
+  box-shadow: 0px 0px 0px black; 
+}
+
+.grab-btn:disabled { 
+  background-color: #ccc; 
+  color: #666; 
+  box-shadow: none; 
+  cursor: not-allowed; 
+  transform: none; 
+  border-color: #999; 
+}
+
+/* ANIMATIONS YAY - if the page lags blame the school network not my code */
+@keyframes fadeInUp { 
+  from { opacity: 0; transform: translateY(40px); } 
+  to { opacity: 1; transform: translateY(0); } 
+} 
+
+@keyframes pulse { 
+  0% { transform: scale(1); } 
+  50% { transform: scale(1.1) rotate(5deg); } 
+  100% { transform: scale(1); } 
+}
+
+@keyframes panGrid { 
+  0% { background-position: 0 0; } 
+  100% { background-position: 40px 40px; } 
+} 
+/* magic infinite scrolling grid math */
+
+@keyframes logoShine { 
+  0% { left: -100%; } 
+  20% { left: 200%; } 
+  100% { left: 200%; } 
+} 
+/* shine animation frames */
+
+@keyframes moveStripes { 
+  100% { background-position: 30px 0; } 
+} 
+/* makes the progress bar spin basically */
+
+@keyframes floatInfinite { 
+  0% { transform: translateY(0px); } 
+  50% { transform: translateY(-15px); } 
+  100% { transform: translateY(0px); } 
+} 
+/* infinite anti-gravity floating loop */
+
+@keyframes colorShift { 
+  0% { color: var(--green); text-shadow: 2px 2px 0px black; } 
+  50% { color: var(--yellow); text-shadow: 3px 3px 0px var(--orange); } 
+  100% { color: var(--green); text-shadow: 2px 2px 0px black; } 
+} 
+/* RGB gamer text shifting */
+
+@keyframes glowPulse { 
+  0% { box-shadow: 6px 6px 0px black; } 
+  50% { box-shadow: 6px 6px 20px rgba(0,0,0,0.5), 6px 6px 0px black; } 
+  100% { box-shadow: 6px 6px 0px black; } 
+} 
+/* radioactive button pulsing */
+
+footer { 
+  background-color: black; 
+  color: white; 
+  text-align: center; 
+  padding: 60px 20px; 
+  font-weight: bold; 
+  border-top: 12px solid var(--green); 
+} 
+/* footer so big it looks like we have more content than we actually do */
+
+footer h2 { 
+  color: var(--green); 
+  margin-bottom: 15px; 
+  font-size: 2.2rem; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+  text-shadow: 3px 3px 0px rgba(255,255,255,0.2); 
+}
+
+@media (max-width: 768px) { 
+  .top-nav { flex-direction: column; gap: 15px; padding: 20px; } 
+  .banner h1 { font-size: 2.5rem; } 
+  .info-box, .item-card { width: 100%; max-width: 400px; animation: none; } 
+  .flex-inputs { flex-direction: column; gap: 0; } 
+  .sim-area, .board-area, .threats-wrapper { padding: 40px 15px; } 
+} 
+/* mobile view so the judges dont complain so iter had to hardcode this do not touch. disabled anti-gravity on mobile so phones dont explode */
 
 /* THE WINNER PROTOCOL CSS - UPGRADED TO CHAMPION TIER */
 .winner-mode { 
-    filter: brightness(1.15) contrast(1.1) saturate(2); 
-    border: 15px solid #FFD700; 
-    box-shadow: inset 0 0 60px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.8);
-    outline: 5px solid rgba(255, 255, 255, 0.4);
-    outline-offset: -12px;
+  filter: brightness(1.15) contrast(1.1) saturate(2); 
+  border: 15px solid #FFD700; 
+  box-shadow: inset 0 0 60px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.8);
+  outline: 5px solid rgba(255, 255, 255, 0.4);
+  outline-offset: -12px;
 }
+
 .victory-banner {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle, rgba(255, 223, 0, 0.4) 0%, rgba(255, 215, 0, 0.1) 100%); 
-    z-index: 999999;
-    display: flex; justify-content: center; align-items: center;
-    pointer-events: none; animation: popIn 0.5s ease-out, pulse 2s infinite;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 223, 0, 0.4) 0%, rgba(255, 215, 0, 0.1) 100%); 
+  z-index: 999999;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  pointer-events: none; 
+  animation: popIn 0.5s ease-out, pulseMode 2s infinite;
 }
-@keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-@keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.9; } }
+
+@keyframes popIn { 
+  0% { transform: scale(0); opacity: 0; } 
+  100% { transform: scale(1); opacity: 1; } 
+}
+
+@keyframes pulseMode { 
+  0%, 100% { opacity: 0.5; } 
+  50% { opacity: 0.9; } 
+}
