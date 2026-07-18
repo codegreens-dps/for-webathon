@@ -37,6 +37,12 @@ onSnapshot(boardQuery, (snapshot) => { /*this is basically magic it just knows w
         /*cleaning the data so nobody can inject fake html into the page*/ let safeName = sanitizeHTML(itemData.name); let safeClaimedBy = sanitizeHTML(itemData.claimedBy); let safeLister = sanitizeHTML(itemData.lister); let safeDesc = sanitizeHTML(itemData.description);
 
         if (itemData.status === "claimed") { /*logic if claimed hide it in the history dropdown if not show on the main board*/ claimedCount++; claimedList.innerHTML += `<li>✅ <strong>${safeName}</strong> was snagged by ${safeClaimedBy}!</li>`; } else { itemCount++; /*writing html inside js feels illegal but stackoverflow says its fine*/ let htmlCard = `<div class="item-card" id="card-${itemId}"><div class="card-icon">${itemData.icon}</div><h3>${safeName}</h3><p class="lister-name">Listed by: ${safeLister}</p><p>${safeDesc}</p><button class="grab-btn" id="btn-${itemId}" onclick="claimIt('${itemId}')">CLAIM FOR FREE</button></div>`; liveBoard.innerHTML += htmlCard; }
+    // Update the counter on the screen
+    const counterElement = document.getElementById('landfillCounter');
+    if (counterElement) {
+        counterElement.innerText = claimedCount;
+    }
+    
     });
 
     if (itemCount === 0) { liveBoard.innerHTML = "<h3 style='width:100%;text-align:center;color:gray;'>No items available right now. Be the first to list something!</h3>"; } /*if the database is empty it looks dumb so we put a placeholder message so dont seem dumb*/
