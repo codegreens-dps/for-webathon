@@ -28,8 +28,11 @@ document.addEventListener('keydown', function(e) {
             document.getElementById('konami-modal').style.display = 'flex';
             document.body.classList.add('winner-mode');
             
-            // Reset glitch effect after 1 second
-            setTimeout(() => document.body.classList.remove('winner-mode'), 1000);
+            // Reset glitch effect and hide modal after 5 seconds (5000ms)
+            setTimeout(() => {
+                document.body.classList.remove('winner-mode');
+                document.getElementById('konami-modal').style.display = 'none';
+            }, 5000);
             
             konamiPosition = 0; // Reset after success
         }
