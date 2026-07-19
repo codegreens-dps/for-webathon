@@ -332,4 +332,16 @@ window.activateWinnerProtocol = function() {
     }, 3000);
     
     console.log("Judges: 'Wow, such clean code.'");
+
+  /* Konami Code: ↑↑↓↓←→←→ba */
+const k = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+let p = 0;
+document.addEventListener('keydown', (e) => {
+    p = (e.key.toLowerCase() === k[p]) ? p + 1 : 0;
+    if (p === k.length) {
+        p = 0;
+        document.body.classList.add('winner-mode');
+        setTimeout(() => document.body.classList.remove('winner-mode'), 2000);
+    }
+});
 };
