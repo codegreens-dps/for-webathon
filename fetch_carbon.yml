@@ -1,0 +1,44 @@
+name: Automated Carbon Data Sync
+
+on:
+  schedule:
+    # Runs automatically every 6 hours (UTC) to refresh the data
+    - cron: '0 */6 * * *'
+  # Allows you to click a button in the GitHub UI to run it manually anytime
+  workflow_dispatch: true
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Make data directory if missing
+        run: mkdir -p data
+
+      - name: Fetch Live Grid Intensities from API
+        env:
+          API_KEY: ${{ secrets.ELECTRICITY_MAPS_TOKEN }}
+        run: |
+          # Loop through each of your designated target regions
+          for zone in IN IN-EA IN-NE IN-NO IN-SO IN-WE; do
+            echo "Syncing live metrics for $zone..."
+            curl -s -X GET "https://api.electricitymaps.com/v3/carbon-intensity/latest?zone=${zone}" \
+                 -H "auth-token: ${API_KEY}" > "data/${zone}.json"
+            sleep 1 # Minor delay to avoid hitting rate limits
+          done
+
+      - name: Commit and Push Updated Live Data
+        run: |
+          git config --global user.name "CodeGreens Data Bot"
+          git config --global user.email "bot@codegreens.local"
+          git add data/*.json
+          
+          # Only commit if data actually changed to avoid endless empty loop builds
+          if git diff --staged --quiet; then
+            echo "No data adjustments recorded."
+          else
+            git commit -m "⚡ Sync live grid data metrics [Automated]"
+            git push
+          fi
