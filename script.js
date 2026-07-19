@@ -7,18 +7,35 @@ var firebaseApp = initializeApp(conf), database = getFirestore(firebaseApp);
 
 /* security stuff from stackoverflow */
 function cln(s){ if(!s)return""; var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+/* --- KONAMI CODE (Cleaned Up) --- */
+const konamiCode = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a']; 
+let konamiPosition = 0;
 
-/* KONAMI CODE EASTER EGG (Up Up Down Down Left Right Left Right B A) */
-const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']; let konamiPosition = 0;
 document.addEventListener('keydown', function(e) {
-    if (e.key.toLowerCase() === konamiCode[konamiPosition] || e.key === konamiCode[konamiPosition]) {
+    // Normalize input to lowercase to match our array
+    const pressedKey = e.key.toLowerCase();
+    const expectedKey = konamiCode[konamiPosition];
+
+    if (pressedKey === expectedKey) {
         konamiPosition++;
+        console.log("Konami progress: " + konamiPosition); // Debug: Check console to see if it's counting up
+
         if (konamiPosition === konamiCode.length) {
-            document.getElementById('konami-modal').style.display = 'flex'; konamiPosition = 0;
-            // Glitch out the page for 1 second as an extra effect
-            document.body.classList.add('winner-mode'); setTimeout(() => document.body.classList.remove('winner-mode'), 1000);
+            console.log("Konami Activated!");
+            
+            // Trigger your effects
+            document.getElementById('konami-modal').style.display = 'flex';
+            document.body.classList.add('winner-mode');
+            
+            // Reset glitch effect after 1 second
+            setTimeout(() => document.body.classList.remove('winner-mode'), 1000);
+            
+            konamiPosition = 0; // Reset after success
         }
-    } else { konamiPosition = 0; }
+    } else {
+        // Reset if they press the wrong key
+        konamiPosition = 0;
+    }
 });
 
 /* putting everything in onload because it broke otherwise */
