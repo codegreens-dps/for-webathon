@@ -195,26 +195,100 @@ footer h2 { font-family: "Orbitron", sans-serif; color: white; margin-bottom: 20
 @keyframes flashColors { 0% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(180deg); } 100% { filter: hue-rotate(360deg); } }
 
 /* --- NEW: PRINT REPORT FEATURE --- */
+/* --- UPGRADED PRINT BUTTON (Crisp White Neon Glow) --- */
+.print-btn {
+    font-family: "Orbitron", sans-serif;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 800;
+    border: 2px solid #fff;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2), inset 0 0 10px rgba(255,255,255,0.1);
+}
+.print-btn:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(255,255,255,0.6), 0 0 30px #fff;
+}
+.print-btn::after {
+    content: ''; position: absolute; inset: -2px; bottom: -5px; z-index: -1;
+}
+
+/* --- ADVANCED 1-PAGE PRINT DOSSIER --- */
 @media print {
-    /* Hide everything that isn't the report */
-    body * {
-        visibility: hidden;
+    /* Force 1-page standard layout */
+    @page {
+        size: letter portrait;
+        margin: 0.5in;
     }
-    #resultBox, #resultBox * {
-        visibility: visible;
+    
+    body {
+        background: white !important;
+        /* Force browsers to print the colorful progress bar */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
+    
+    /* Hide everything on the site... */
+    body * { visibility: hidden; }
+    
+    /* ...Except the result box! */
+    #resultBox, #resultBox * { visibility: visible; }
+    
     #resultBox {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
+        height: 100%; /* Locks to 1 page */
+        max-height: 100vh;
         background: white !important;
         color: black !important;
+        /* Formal dossier styling */
+        border: 4px double black !important; 
+        box-shadow: none !important;
+        padding: 40px !important;
+        /* Center content beautifully on the page */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        page-break-after: avoid;
+        page-break-before: avoid;
+    }
+    
+    /* Reveal the hidden official header */
+    .print-header { display: block !important; }
+    
+    /* Hide all web buttons from the paper */
+    .result-actions { display: none !important; }
+    
+    /* Format the text for paper readability */
+    h3, p, span {
+        color: black !important;
+        text-shadow: none !important;
+    }
+    .big-emoji {
+        filter: none !important;
+        animation: none !important;
+        text-shadow: none !important;
+        margin-top: 20px !important;
+    }
+    
+    /* Format the progress bar for paper */
+    .bar-background {
         border: 2px solid black !important;
+        background-color: #f0f0f0 !important;
         box-shadow: none !important;
     }
-    /* Hide buttons in the printout */
-    .brutal-btn {
-        display: none;
+    .bar-color {
+        animation: none !important; /* stop moving stripes on paper */
+        border-right: 2px solid black !important;
     }
 }
