@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <!-- 
-     _____         _     _____                             
-    / ____|       | |   / ____|                            
+     _____         _     _____                               
+    / ____|       | |   / ____|                              
    | |     ___  __| |___| |  __ _ __ ___  ___ _ __  ___  
    | |    / _ \/ _` |/ _ \ | |_ | '__/ _ \/ _ \ '_ \/ __|
    | |___| (_) | (_| |  __/ |__| | | |  __/  __/ | | \__ \
@@ -163,6 +163,11 @@
             <p title="We accept first-place trophies, large pizzas, and 8 hours of sleep as payment" class="copyright">© 2026 Team CodeGreens <span onclick="alert('You found the final Easter Egg! You are officially the best judge here. 🤫 Please give us an A.')" class="secret-spy">🕵️‍♂️</span></p>
         </div>
     </footer>
+
+    <!-- ADDED: The missing Konami Modal that your JS script was trying to trigger -->
+    <div id="konami-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 999999;">
+        <h1 style="color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 4rem; text-shadow: 0 0 30px var(--green);">KONAMI ACTIVATED! 🚀</h1>
+    </div>
 
     <!-- the magic juice below -->
     <script type="module" src="script.js"></script>
