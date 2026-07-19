@@ -119,7 +119,11 @@ body {
     border-bottom: 1px solid rgba(0, 255, 102, 0.6); padding: 18px 40px; display: flex; justify-content: space-between; 
     align-items: center; position: sticky; top: 0; z-index: 99999; box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 255, 102, 0.15); 
 } 
-.site-logo { font-family: "Orbitron", sans-serif; font-size: 26px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 25px var(--green); position: relative; overflow: hidden; display: inline-block; padding-right: 15px; } 
+.site-logo { 
+    font-family: "Orbitron", sans-serif; font-size: 26px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 25px var(--green); position: relative; overflow: hidden; display: inline-block; padding-right: 15px; 
+    -webkit-user-select: none; /* Safarai */
+    user-select: none; /* Standard */
+} 
 .site-logo::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(0,255,102,0.9), transparent); transform: skewX(-20deg); animation: logoShine 4s infinite; } 
 .top-nav nav a { color: #ccc; text-decoration: none; font-weight: 700; margin-left: 30px; cursor: pointer; display: inline-block; font-size: 1.05rem; letter-spacing: 0.5px; }
 .top-nav nav a:hover { color: var(--green); transform: translateY(-3px); text-shadow: 0 0 20px var(--green); } 
