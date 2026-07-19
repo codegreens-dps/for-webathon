@@ -193,6 +193,9 @@ window.activateWinnerProtocol = function() {
     // 3. Remove everything after 5 seconds (5000ms)
     setTimeout(function(){ if (b.parentNode) b.remove(); document.body.classList.remove("winner-mode"); }, 5000);
     console.log("Judges: 'Wow, such clean code.'");
-    
-    /* Duplicate Konami Code event listener removed to fix Error 1 (event listener stacking) */
+};
+
+/* --- NEW: PRINT REPORT FEATURE --- */
+window.printReport = function() {
+    window.print();
 };
