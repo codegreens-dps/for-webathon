@@ -108,11 +108,22 @@
             </form>
 
             <div id="resultBox" class="end-screen" style="display: none;">
-                <h1 id="resultEmoji" class="big-emoji bounce-in">🌍</h1><h3 class="score-display">Sustainability Score: <span id='scoreText' class="glitch-score">0</span> / 100</h3>
+                <!-- HIDDEN ON WEB, VISIBLE ON PRINT -->
+                <div class="print-header" style="display: none; text-align: center; border-bottom: 2px solid black; padding-bottom: 20px; margin-bottom: 40px;">
+                    <h2 style="font-family: 'Orbitron', sans-serif; font-size: 28px; font-weight: 900; margin-bottom: 5px; color: black !important; text-shadow: none !important;">OFFICIAL CLIMATE IMPACT DOSSIER</h2>
+                    <p style="font-family: monospace; font-size: 14px; color: #555 !important;">Automated Generation Engine | Team CodeGreens Simulator</p>
+                </div>
+                
+                <h1 id="resultEmoji" class="big-emoji bounce-in">🌍</h1>
+                <h3 class="score-display">Sustainability Score: <span id='scoreText' class="glitch-score">0</span> / 100</h3>
                 <div id="barBacking" class="bar-background neo-border"><div id="barFill" class='bar-color striped-bg'></div></div>
                 <p id="feedbackText" class="feedback-text mono-text"></p>
-                <button type='button' class="btn-retry brutal-btn" onclick="resetQuiz()">Retry Policies ↺</button>
-                <button type='button' class="brutal-btn" style="margin-left: 10px; border-color: var(--green); color: var(--green);" onclick="printReport()">PRINT REPORT 🖨️</button>
+                
+                <div class="result-actions" style="margin-top: 40px;">
+                    <button type='button' class="btn-retry brutal-btn" onclick="resetQuiz()">Retry Policies ↺</button>
+                    <!-- Upgraded Print Button -->
+                    <button type='button' class="print-btn brutal-btn" onclick="printReport()">PRINT REPORT 🖨️</button>
+                </div>
             </div>
         </div>
     </div>
