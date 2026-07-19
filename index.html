@@ -6,7 +6,7 @@
     <meta name='viewport' content="width=device-width, initial-scale=1.0">
 <!-- update title later cuz lazy -->
   <title>EcoFootprint by CodeGreens</title>
-<link href=style.css rel="stylesheet">
+<link href="style.css" rel="stylesheet">
     <!-- <link href="old_style.css" rel="stylesheet"> tried this but it sucked -->
 </head>
 <body>
@@ -29,8 +29,18 @@
             <option value="IN-SO">Southern India (IN-SO)</option>
             <option value="IN-WE">Western India (IN-WE)</option>
         </select>
+        
+        <!-- Upgraded this box to hold the visual meter -->
         <div id="intensityDisplay" class="intensity-display">
-            <span id="intensityValue">Loading...</span> <small>gCO₂eq/kWh</small>
+            <div class="intensity-readout">
+                <span id="intensityValue">Loading...</span> <small>gCO₂eq/kWh</small>
+            </div>
+            
+            <!-- The new visual meter for the judges -->
+            <div class="meter-wrapper" title="Lower is greener!">
+                <div id="intensityMeterFill" class="meter-fill"></div>
+            </div>
+            <div id="intensityStatus" class="intensity-status">Checking grid health...</div>
         </div>
     </div>
 </div>
@@ -48,7 +58,7 @@
   </header>
 
     <!-- yo judges if ur readin this pls give us extra points we sleep deprived-->
-  <DIV id=home class="banner">
+  <DIV id="home" class="banner">
       <h1 title="We stayed up until 3 AM building this mess lol">Policy Simulator & Give & Take Board</h1>
         <P>Drive systemic climate action. Test global solutions with our Policy Simulator or share Used Resources locally on the Give & Take Board.</P>
         <!-- dont ask why its big-btn instead of just btn it just works-->
@@ -57,7 +67,7 @@
 
 <!-- idk how this works but it aligns so dont touch or it explodes -->
 <div class="threats-wrapper">
-    <h2 class=main-heading>Core Climate Threats</h2>
+    <h2 class="main-heading">Core Climate Threats</h2>
       <div class="flex-boxes">
         <div class='info-box'>
           <h1 class="box-emoji" title="Dinosaurs died for this rip">🛢️</h1>
@@ -79,7 +89,7 @@
 </div>
 
 <!-- quiz stuff idk why this works but it does dont touch it -->
-  <div id=sim class="sim-area">
+  <div id="sim" class="sim-area">
       <h2 class="main-heading" title="Powered by 100% pure student panic">⚡ Policy Deployment Simulator ⚡</h2>
     <div class='quiz-box'>
         <!-- if this form breaks im literally quitting coding -->
@@ -87,12 +97,12 @@
             
             <div class="q-wrap">
               <label>1. How should we power the world? ⚡</label>
-                <select id=q1 required>
+                <select id="q1" required>
                   <option value="">-- Pick your path --</option>
                   <!-- these values beter add up to 100 or the math is cooked for us -->
-                    <option value=20>Only use clean, green power</option>
-                    <option value=10>Slowly move away from fossil fuels</option>
-                  <option value=0>Stick with oil, coal, and gas</option>
+                    <option value="20">Only use clean, green power</option>
+                    <option value="10">Slowly move away from fossil fuels</option>
+                  <option value="0">Stick with oil, coal, and gas</option>
                 </select>
             </div>
 
@@ -110,7 +120,7 @@
              <!-- brain cells startin disapperaing at this point -->
             <div class='q-wrap'>
                 <label>3. How do we fix our food system? 🍎</label>
-                <select id=q3 required>
+                <select id="q3" required>
                     <option value="">-- Pick your path --</option>
                   <option value="20">Promote plant-heavy eating and stop wasting food</option>
                     <option value="10">Clean up industrial farming with greener methods</option>
@@ -122,13 +132,13 @@
               <label>4. How do we upgrade public travel? 🚄</label>
                 <select id="q4" required>
                   <option value="">-- Pick your path --</option>
-                    <option value=20>Invest heavily in fast trains and pedestrian spaces</option>
-                    <option value=10>Push for electric vehicles instead of changing our roads</option>
-                  <option value=0>Add more lanes and highways to handle traffic</option>
+                    <option value="20">Invest heavily in fast trains and pedestrian spaces</option>
+                    <option value="10">Push for electric vehicles instead of changing our roads</option>
+                  <option value="0">Add more lanes and highways to handle traffic</option>
                 </select>
             </div>
             
-            <div class=q-wrap>
+            <div class="q-wrap">
                 <label>5. How do we reduce factory waste? 🏗️</label>
                 <select id='q5' required>
                   <option value="">-- Pick your path --</option>
@@ -142,7 +152,7 @@
 
         <!-- hide screen(i copyd this hack from stackoverflow cuz im lazy lol) -->
         <DIV id="resultBox" class="end-screen" style="display: none;">
-            <h1 id=resultEmoji class="big-emoji">🌍</h1>
+            <h1 id="resultEmoji" class="big-emoji">🌍</h1>
             <h3>Sustainability Score: <span id='scoreText'>0</span> / 100</h3>
               <div id="barBacking" class="bar-background">
                   <div id="barFill" class='bar-color'></div>
@@ -154,7 +164,7 @@
   </div>
 
   <!-- firestore is a weird hacker cloud place but it works -->
-<div id=board class="board-area">
+<div id="board" class="board-area">
     <h2 class="main-heading">♻️ The Give & Take Board ♻️</h2>
         
       <!-- Stats Counter added here! -->
@@ -168,7 +178,7 @@
     <div class="new-post-box">
           <h3>List a New Item</h3>
         <form id="addItemForm">
-            <div class=flex-inputs>
+            <div class="flex-inputs">
                 <input type="text" id='newItemName' placeholder="e.g. Geometry Textbook" required>
                 <select id="newItemIcon" required>
                     <option value="">Pick an Icon</option>
@@ -180,7 +190,7 @@
                 </select>
             </div>
             <input type='text' id="newListerName" placeholder="Your Name & Class" required>
-              <textarea id="newItemDesc" rows=3 placeholder="Condition? Where to meet?" required></textarea>
+              <textarea id="newItemDesc" rows="3" placeholder="Condition? Where to meet?" required></textarea>
             <button type="submit" class='post-btn' oncontextmenu="alert('Stop right clicking weirdo!'); return false;">LIST ITEM</button>
         </form>
     </div>
@@ -206,7 +216,7 @@
 </div>
 
     <!-- Easter Egg #3: The ultimate truth -->
-<footer id=about class="about-us">
+<footer id="about" class="about-us">
     <h2>About the Devs</h2>
       <p>Built for the 2026 webathon by two tired students.</p><br>
         <!-- copyright so it looks offical -->
@@ -214,6 +224,6 @@
 </footer>
 
 <!-- the magic juice below -->
-<script type="module" src=script.js></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
